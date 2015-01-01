@@ -30,67 +30,70 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/parallax.js"></script>
 </head>
 
-<body style="background-color: black;">
+<body>
+<div style="position: absolute; width: 100%; height: 1500px;" class="parallax-window" data-speed="0.3" data-parallax="scroll" data-image-src="img/70_vn_layer1_bg.png" data-z-index="-100"></div>
 <style>
 .hideme {
-    opacity:0.3;
+    opacity: 1;
 }
 </style>
 <script>
 $(document).ready(function() {
     
-    /* Every time the window is scrolled ... */
-    $(window).scroll( function(){
-    
-        /* Check the location of each desired element */
-        $('.hideme').each( function(i){
-            
-            var bottom_of_object = $(this).position().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-            
-            /* If the object is completely visible in the window, fade it it */
-            if( bottom_of_window > bottom_of_object ){
-                alert("wtf");
-                $(this).delay((i++) * 200).animate({'opacity':'1'},500);
-                    
-            }
-            
-        }); 
-    
-    });
-    
+    ///* Every time the window is scrolled ... */
+//    $(window).scroll( function(){
+//    
+//        /* Check the location of each desired element */
+//        $('.hideme').each( function(i){
+//            
+//            var bottom_of_object = $(this).position().top + $(this).outerHeight();
+//            var bottom_of_window = $(window).scrollTop() + $(window).height();
+//            
+//            /* If the object is completely visible in the window, fade it it */
+//            if( bottom_of_window > bottom_of_object ){
+//                $(this).delay((i++) * 500).animate({'opacity':'1'},500);
+//            }
+//            
+//        }); 
+//    
+//    });
+//    
 });
 </script>
-<div class="container">
+<div class="container" style="padding: 0 auto; width: 100%;">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<!-- Part 1 -->
             <div class="row clearfix">
-				<div class="col-md-12 column hideme" style="height: 300px; padding: 0px; position: relative; ">
+				<div class="col-md-12 column hideme" style="height: 400px; padding: 0px; position: relative; ">
                     <div style="width: 100%; height: 100%; position: absolute;">
-                        <img width="100%" height="300px" src="http://www.f-covers.com/cover/autumn-landscape-facebook-cover-timeline-banner-for-fb.jpg" />
+                        <!--
+                        <img width="100%"  src="img/vn_main_banner.jpg" />
+                        -->
+                        <div style="width: 100%; height: 400px;" class="parallax-window" data-z-index="10" data-speed="0.5" data-parallax="scroll" data-image-src="img/vn_main_banner.jpg"></div>
                     </div>
-                    <div style="width: 100%; height: 50px; text-align: center; background-color: white; opacity: 0.5; position: absolute;">
-                        <img height="50px" src="http://vietngan.vn/vnt_upload/weblink/Logo_Vietngan_5.jpg"/>
+                    <div style="width: 100%; height: 50px; text-align: center; background-color: white; opacity: 0.7; position: absolute; z-index: 20;">
+                        <img height="50px" src="img/vn_Logo_Vietngan_5.jpg"/>
                     </div>
                      
 				</div>
 			</div>
             <!-- END Part 1 -->
             <!-- Part 2 -->
-			<div class="row clearfix" style="margin-top: 20px;">
+			<div class="row clearfix" style="margin-top: 20px; opacity: 0.8;">
 				<div class="col-md-12 column">
                     <div style="text-align: center;">
                         <button type="button" class="btn btn-primary hideme"
                             style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border-color: black; ">
+                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border: 0px; ">
                             VỀ VIỆT NGÂN
                         </button>
                         <br />
-                        <div class="hideme" style="margin-top: 10px; display: inline-block; width: 60%; background-color: aqua; text-align: center;">
-                        hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy
+                        <div class="hideme" style="background-color: white; margin-top: 10px; display: inline-block; width: 60%; text-align: center; border-radius: 7px; padding: 20px;">
+                        Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
                         </div>
                     </div>
                     
@@ -99,17 +102,17 @@ $(document).ready(function() {
             <!-- END Part 2 -->
             
             <!-- Part 3 -->
-			<div class="row clearfix hideme" style="margin-top: 20px;">
+			<div class="row clearfix hideme" style="margin-top: 20px; opacity: 0.8;">
 				<div class="col-md-12 column">
                     <div>
                         <button type="button" class="btn btn-primary hideme"
                             style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border-color: black; float: right; margin-right: 10%; ">
-                            VỀ VIỆT NGÂN
+                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border: 0px; float: right; margin-right: 10%; ">
+                            HOẠT ĐỘNG
                         </button>
                         <div class="clearfix"></div>
                     </div>
-                    <div style="position: relative; text-align: center; margin-top: 10px; background-color: black; height: 400px; width: 650px; margin: 0 auto; background: url(img/0_percent_white_bg.png);">
+                    <div style="position: relative; text-align: center; margin-top: 10px; height: 400px; width: 650px; margin: 0 auto;">
                         <div class="hideme" style="position: absolute; margin-top: 50px;">
                             <img style="margin-left: 180px;" width="300px" src="img/vn_hinhthoi.png" />
                         </div>
@@ -145,19 +148,18 @@ $(document).ready(function() {
             <!-- END Part 3 -->
             
             <!-- Part 4 -->
-			<div class="row clearfix" style="margin-top: 20px;">
+			<div class="row clearfix" style="margin-top: 20px; opacity: 0.8; ">
 				<div class="col-md-12 column">
                     <div>
-                        <button type="button" class="btn btn-primary hideme"
-                            style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border-color: black; float: left; margin-left: 10%; ">
-                            VỀ VIỆT NGÂN
+                        <button type="button" class="btn btn-primary"
+                                style="
+                                border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border: 0px; margin-left: 10%;">
+                                HỢP TÁC
                         </button>
-                        <div class="clearfix"></div>
                     </div>
-                    <div class="hideme" style="text-align: center; margin-top: 10px;">
-                        <div style="display: inline-block; width: 60%; background-color: aqua; text-align: center;">
-                        hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy
+                    <div style="text-align: center; margin-top: 10px;">
+                        <div style="margin-top: 10px; display: inline-block; width: 60%; background-color: white; text-align: center; border-radius: 7px ; padding: 20px;">
+                        Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
                         </div>
                     </div>
                     
@@ -165,134 +167,25 @@ $(document).ready(function() {
 			</div>
             <!-- END Part 4 -->
             <!-- Part 5 -->
-			<div class="row clearfix" style="margin-top: 20px;">
+			<div class="row clearfix" style="margin-top: 20px; opacity: 0.8;">
 				<div class="col-md-12 column">
                     <div style="text-align: center;">
                         <button type="button" class="btn btn-primary"
                             style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border-color: black; ">
-                            VỀ VIỆT NGÂN
+                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background-color: white; color: black; border: 0px">
+                            LIÊN HỆ
                         </button>
                         <br />
-                        <div style="margin-top: 10px; display: inline-block; width: 60%; background-color: aqua; text-align: center;">
-                        hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy hghgh h hev fs evbfegufsdhbfg76eshefvbdsr t4e tse45 .e4ns3ebyt4uytret se5 ye5y.5y.s5.67 yse5 6tes45 6tse4s5y. s5e yey se5y e5yy
+                        <div style="margin-top: 10px; display: inline-block; width: 60%; background-color: white; text-align: center; border-radius: 7px ; padding: 20px;">
+                        Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
                         </div>
                     </div>
                     
 				</div>
 			</div>
             <!-- END Part 5 -->
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="thumbnail">
-								<img alt="300x200" src="http://lorempixel.com/600/200/people">
-								<div class="caption">
-									<h3>
-										Thumbnail label
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="thumbnail">
-								<img alt="300x200" src="http://lorempixel.com/600/200/city">
-								<div class="caption">
-									<h3>
-										Thumbnail label
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="thumbnail">
-								<img alt="300x200" src="http://lorempixel.com/600/200/sports">
-								<div class="caption">
-									<h3>
-										Thumbnail label
-									</h3>
-									<p>
-										Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-									</p>
-									<p>
-										<a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="progress">
-						<div class="progress-bar progress-success">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-								Panel title
-							</h3>
-						</div>
-						<div class="panel-body">
-							Panel content
-						</div>
-						<div class="panel-footer">
-							Panel footer
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					 <button type="button" class="btn btn-default">Default</button>
-				</div>
-			</div>
-			<div class="row clearfix hideme">
-				<div class="col-md-12 column">
-					 <a id="modal-961106" href="#modal-container-961106" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-					
-					<div class="modal fade" id="modal-container-961106" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-									<h4 class="modal-title" id="myModalLabel">
-										Modal title
-									</h4>
-								</div>
-								<div class="modal-body">
-									...
-								</div>
-								<div class="modal-footer">
-									 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Save changes</button>
-								</div>
-							</div>
-							
-						</div>
-						
-					</div>
-					
-				</div>
-			</div>
+			
+			
 		</div>
 	</div>
 </div>
