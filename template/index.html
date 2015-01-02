@@ -34,7 +34,7 @@
 </head>
 
 <body>
-<div style="position: absolute; width: 100%; height: 1900px;" class="parallax-window" data-speed="0.3" data-parallax="scroll" data-image-src="img/70_vn_layer1_bg.png" data-z-index="-100"></div>
+<div style="position: fixed; width: 100%; height: 1900px;" class="parallax-window" data-speed="0.3" data-parallax="scroll" data-image-src="img/70_vn_layer1_bg.png" data-z-index="-100"></div>
 <style>
 .hideme{
     opacity: 0;
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			var bottom_of_window = $(window).scrollTop() + $(window).height();
 			
 			
-				if( bottom_of_window > ( bottom_of_object + 100 )  ){
+				if( bottom_of_window > ( bottom_of_object + 20 )  ){
 				
 					//$(this).removeClass('hideme').animate({'opacity':'1'},500);
                     $(this).delay(500).animate({'opacity':'1'},1000);
