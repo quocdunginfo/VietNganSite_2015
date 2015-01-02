@@ -28,16 +28,42 @@
   <link rel="shortcut icon" href="img/favicon.png">
   
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/parallax.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript" src="js/parallax.js"></script>
+    
+    
+    
+
 </head>
 
 <body>
+<!--POPUP TAG-->
+                            
+			
+<div class="modal fade" id="modal-container-74399" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Modal title
+				</h4>
+			</div>
+			<div class="modal-body">
+				Nội dung
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+
+<!--END POPUP TAG -->
 <div style="position: fixed; width: 100%; height: 1900px;" class="parallax-window" data-speed="0.3" data-parallax="scroll" data-image-src="img/70_vn_layer1_bg.png" data-z-index="-100"></div>
 <style>
-.hideme{
-    opacity: 0;
+body{
+    color: black;
 }
 .trongsuot-0{
     background: url(img/0_percent_white_bg.png);
@@ -46,47 +72,21 @@
     background: url(img/80_percent_white_bg.png);
 }
 </style>
+<!-- FADE IN -->
 <script>
 $(document).ready(function() {
-	
-	/* Hide all elements outside the visible window */
-	$('body *').each( function(){
-	   
-		var top_of_object = $(this).position().top;
-		var bottom_of_window = $(window).scrollTop() + $(window).height();
-	   
-		if( bottom_of_window < top_of_object  ){
-		
-			$(this).addClass('hideme').css({'opacity':'0'});
-			
-		}
-		
-	});
-	
-	/* Every time the window is scrolled ... */
-	$(window).scroll( function(){
-		
-		/* Check the location of the desired elements */
-		$('.hideme').each( function(i){
-			
-			var bottom_of_object = $(this).position().top;//$(this).position().top + $(this).outerHeight();
-			var bottom_of_window = $(window).scrollTop() + $(window).height();
-			
-			
-				if( bottom_of_window > ( bottom_of_object + 20 )  ){
-				
-					//$(this).removeClass('hideme').animate({'opacity':'1'},500);
-                    $(this).delay(500).animate({'opacity':'1'},1000);
-                    //$(this).animate({'opacity':'1'}, 500);
-                    
-				}
-			
-		}); 
-	
-	});
-	
+    tiles = $(".hideme").fadeTo(0, 0);
+    
+    $(window).scroll(function(d,h) {
+        tiles.each(function(i) {
+            a = $(this).offset().top + $(this).height();
+            b = $(window).scrollTop() + $(window).height();
+            if (a < b) $(this).animate({'opacity':'1'}, 500);$(this).fadeTo(500,1);
+        });
+    });
 });
 </script>
+<!-- END FADE IN -->
 <div class="container" style="padding: 0 auto; width: 100%;">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -97,9 +97,9 @@ $(document).ready(function() {
                         <!--
                         <img width="100%"  src="img/vn_main_banner.jpg" />
                         -->
-                        <div style="width: 100%; height: 400px;" class="parallax-window" data-z-index="10" data-speed="0.5" data-parallax="scroll" data-image-src="img/vn_main_banner.jpg"></div>
+                        <div style="width: 100%; height: 400px;" class="parallax-window" data-z-index="0" data-speed="0.5" data-parallax="scroll" data-image-src="img/vn_main_banner.jpg"></div>
                     </div>
-                    <div style="width: 100%; height: 50px; text-align: center; background-color: white; opacity: 0.8; position: absolute; z-index: 20;">
+                    <div style="width: 100%; height: 50px; text-align: center; background-color: white; opacity: 0.8; position: absolute;">
                         <img height="50px" src="img/vn_Logo_Vietngan_5.jpg"/>
                     </div>
                      
@@ -141,28 +141,33 @@ $(document).ready(function() {
                             <img style="margin-left: 180px;" width="300px" src="img/vn_hinhthoi.png" />
                         </div>
                         
-                        <div class="hideme" style="margin-left: 80px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; text-align: center; padding: 10px;">
+                        <div id="click1" class="hideme" style="cursor: pointer; margin-left: 80px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; text-align: center; padding: 10px;">
                             <div style="color: black;" >
                             Bất động sản
+                            
                             </div>
                             <div style="margin-top: 10px;">
-                            Mô tả cho tab, nothing to show
+                            Click to show modal popup
                             </div>
+                            
                         </div>
-                        <div class="hideme" style="margin-left: 370px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
+                        
+                        <div id="click2" class="hideme" style="cursor: pointer; margin-left: 370px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
                             <div style="color: black;">
                             Bất động sản
                             </div>
                             <div style="margin-top: 10px;">
-                            Mô tả cho tab, nothing to show
+                            Click to show modal popup
                             </div>
+                            
                         </div>
-                        <div class="hideme" style="margin-left: 230px; margin-top: 290px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
+                        <div id="click3" class="hideme" style="margin-left: 230px; margin-top: 290px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
                             <div style="color: black;">
                             Bất động sản
+                            <a id="modal-74399" href="#modal-container-74399" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
                             </div>
                             <div style="margin-top: 10px;">
-                            Mô tả cho tab, nothing to show
+                            Click to show modal popup
                             </div>
                         </div>
                     </div>
@@ -233,9 +238,11 @@ $(document).ready(function() {
             <!-- Part 5 -->
 			<div class="row clearfix" style="margin-top: 1px; background: url(img/80_percent_white_bg.png)">
 				<div class="col-md-12 column">
-                    <div class="hideme" class="hideme" style="text-align: center; padding-top: 40px; padding-bottom: 40px;">
+                    <div class="hideme" style="text-align: center; padding-top: 40px; padding-bottom: 40px;">
                         
                         Copyright &copy; 2015 Việt Ngân
+                        
+                        
                     </div>
                         
 				</div>
