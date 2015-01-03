@@ -15,6 +15,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 
+
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -37,19 +38,54 @@
 <script>
 $(document).ready(function() {
     $(window).stellar();
-    $("#qd-scroll2").stellar();
 });
 </script>
-<img style="position: fixed; top: -1600px;" id="qd-scroll" src="img/70_vn_layer1_bg.png" width="100%" height="auto" data-stellar-ratio="0.5">
+
+<img style="position: fixed; top:-1000px; width: 100%;" src="img/70_vn_layer1_bg.png" data-stellar-ratio="0.5">
+
 <!--POPUP TAG-->
                             
-<div class="modal fade" id="modal-container-74399" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title" id="myModalLabel">
-					Modal title
+					Modal title 1
+				</h4>
+			</div>
+			<div class="modal-body">
+				Nội dung
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+<div class="modal fade" id="modal-container-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Modal title 2
+				</h4>
+			</div>
+			<div class="modal-body">
+				Nội dung
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+<div class="modal fade" id="modal-container-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Modal title 3
 				</h4>
 			</div>
 			<div class="modal-body">
@@ -65,12 +101,14 @@ $(document).ready(function() {
 <style>
 a{
     text-decoration: none !important;
+    padding: 0 !important;
+    color: black !important;
 }
 body{
     color: black;
 }
 .qd-button{
-    padding: 10px 30px 10px 30px;
+    padding: 7px 30px 7px 30px;
     display: inline-block;
     border: solid 1px black;
     white-space: nowrap;
@@ -86,9 +124,6 @@ body{
     background: url(img/80_percent_white_bg.png);
 }
 </style>
-<!-- SCROLLING by quocdunginfo -->
-
-<!-- END SCROLLING by quocdunginfo -->
 <!-- FADE IN -->
 <script>
 $(document).ready(function() {
@@ -98,7 +133,7 @@ $(document).ready(function() {
         tiles.each(function(i) {
             a = $(this).offset().top + $(this).height();
             b = $(window).scrollTop() + $(window).height();
-            if (a < b) $(this).fadeTo(500,1);
+            if (a < b) $(this).delay(700).fadeTo(500,1);
         });
     });
 });
@@ -109,13 +144,14 @@ $(document).ready(function() {
 		<div class="col-md-12 column">
 			<!-- Part 1 -->
             <div class="row clearfix">
-				<div class="col-md-12 column" style="height: 400px; padding: 0px; position: relative; ">
-                    <div style="width: 100%; height: 100%; position: absolute; text-align: center;">
-                        <img style="width: auto; max-width: 100%; height: auto;" src="img/vn_main_banner.jpg">
-                    </div>
+				<div class="col-md-12 column" style="padding: 0px; position: relative; ">
                     <div style="width: 100%; height: 50px; text-align: center; background-color: white; opacity: 0.8; position: absolute;">
                         <img height="50px" src="img/vn_Logo_Vietngan_5.jpg"/>
                     </div>
+                    <div style="text-align: center;">
+                        <img style="width: 100%; height: auto;" src="img/vn_main_banner.jpg">
+                    </div>
+                    
                      
 				</div>
 			</div>
@@ -124,7 +160,7 @@ $(document).ready(function() {
 			<div class="row clearfix trongsuot-80" style="margin-top: 20px;">
 				<div class="col-md-12 column">
                     <div style="text-align: center;">
-                        <div class="trongsuot-0 qd-button">VỀ VIỆT NGÂN</div>
+                        <div class="trongsuot-0 qd-button hideme">VỀ VIỆT NGÂN</div>
                         <br />
                         <div class="hideme trongsuot-0" style="margin-top: 10px; display: inline-block; width: 60%; text-align: center; border-radius: 7px; padding: 20px;">
                         Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
@@ -139,15 +175,25 @@ $(document).ready(function() {
 			<div class="row clearfix" style="margin-top: 20px;">
 				<div class="col-md-12 column trongsuot-0">
                     <div>
-                        <div class="qd-button pull-right" style="margin-right: 15%;">HOẠT ĐỘNG</div>
+                        <div class="qd-button pull-right hideme" style="margin-right: 15%;">HOẠT ĐỘNG</div>
                         <div class="clearfix"></div>
                     </div>
                     <div style="position: relative; text-align: center; margin-top: 10px; height: 400px; width: 650px; margin: 0 auto;">
-                        <div style="position: absolute; margin-top: 50px;">
+                        <div style="position: absolute; margin-top: 50px;" class="hideme">
                             <img style="margin-left: 180px;" width="300px" src="img/vn_hinhthoi.png" />
                         </div>
-                        
-                        <div id="click1" style="cursor: pointer; margin-left: 80px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; text-align: center; padding: 10px;">
+                        <style>
+                        .qd-click{
+                            cursor: pointer;
+                            padding: 10px;
+                            background-color: white;
+                            width: 200px;
+                            height: 100px;
+                            position: absolute;
+                            text-align: center;
+                        }
+                        </style>
+                        <div class="hideme qd-click" id="click1" style="margin-left: 80px; margin-top: 150px;">
                             <div style="color: black;" >
                             Bất động sản
                             
@@ -158,7 +204,7 @@ $(document).ready(function() {
                             
                         </div>
                         
-                        <div id="click2" style="cursor: pointer; margin-left: 370px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
+                        <div class="hideme qd-click" id="click2" style="margin-left: 370px; margin-top: 150px;">
                             <div style="color: black;">
                             Bất động sản
                             </div>
@@ -167,15 +213,26 @@ $(document).ready(function() {
                             </div>
                             
                         </div>
-                        <div id="click3" style="margin-left: 230px; margin-top: 290px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
+                        
+                        <div class="hideme qd-click" id="click3" style="margin-left: 230px; margin-top: 290px;">
                             <div style="color: black;">
                             Bất động sản
-                            <a id="modal-74399" href="#modal-container-74399" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
                             </div>
                             <div style="margin-top: 10px;">
                             Click to show modal popup
                             </div>
                         </div>
+                        <script>
+                        $( "#click1" ).click(function() {
+                            $('#modal-container-1').modal('show'); 
+                        });
+                        $( "#click2" ).click(function() {
+                            $('#modal-container-2').modal('show'); 
+                        });
+                        $( "#click3" ).click(function() {
+                            $('#modal-container-3').modal('show'); 
+                        });
+                        </script>
                     </div>
                     
 				</div>
@@ -183,10 +240,10 @@ $(document).ready(function() {
             <!-- END Part 3 -->
             
             <!-- Part 4 -->
-			<div class="row clearfix" style="margin-top: 20px; background: url(img/80_percent_white_bg.png)">
+			<div class="row clearfix trongsuot-80" style="margin-top: 20px;">
 				<div class="col-md-12 column">
                     <div>
-                        <div class="trongsuot-0 qd-button pull-left" style="margin-left: 15%;">HỢP TÁC</div>
+                        <div class="trongsuot-0 qd-button pull-left hideme" style="margin-left: 15%;">HỢP TÁC</div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="hideme" style="text-align: center; margin-top: 10px;">
@@ -203,7 +260,7 @@ $(document).ready(function() {
 				<div class="col-md-12 column">
                     <div style="text-align: center;">
                         
-                        <div class="trongsuot-0 qd-button">LIÊN HỆ</div>                    
+                        <div class="trongsuot-0 qd-button hideme">LIÊN HỆ</div>                    
                         <br />
                         <div class="hideme" style="margin-top: 10px; display: inline-block; width: 60%; text-align: center; border-radius: 7px ; padding: 20px;">
                         Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
