@@ -26,21 +26,23 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
   <link rel="shortcut icon" href="img/favicon.png">
-  
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/parallax.js"></script>
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-    
-    
-    
-
+    <script type="text/javascript" src="js/stellar.js"></script>
 </head>
 
 <body>
+<script>
+$(document).ready(function() {
+    $(window).stellar();
+    $("#qd-scroll2").stellar();
+});
+</script>
+<img style="position: fixed; top: -1600px;" id="qd-scroll" src="img/70_vn_layer1_bg.png" width="100%" height="auto" data-stellar-ratio="0.5">
 <!--POPUP TAG-->
                             
-			
 <div class="modal fade" id="modal-container-74399" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -60,10 +62,22 @@
 </div>
 
 <!--END POPUP TAG -->
-<div style="position: fixed; width: 100%; height: 1900px;" class="parallax-window" data-speed="0.3" data-parallax="scroll" data-image-src="img/70_vn_layer1_bg.png" data-z-index="-100"></div>
 <style>
+a{
+    text-decoration: none !important;
+}
 body{
     color: black;
+}
+.qd-button{
+    padding: 10px 30px 10px 30px;
+    display: inline-block;
+    border: solid 1px black;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-top: 20px;
+    min-width: 150px;
+    text-align: center;
 }
 .trongsuot-0{
     background: url(img/0_percent_white_bg.png);
@@ -72,6 +86,9 @@ body{
     background: url(img/80_percent_white_bg.png);
 }
 </style>
+<!-- SCROLLING by quocdunginfo -->
+
+<!-- END SCROLLING by quocdunginfo -->
 <!-- FADE IN -->
 <script>
 $(document).ready(function() {
@@ -93,11 +110,8 @@ $(document).ready(function() {
 			<!-- Part 1 -->
             <div class="row clearfix">
 				<div class="col-md-12 column" style="height: 400px; padding: 0px; position: relative; ">
-                    <div style="width: 100%; height: 100%; position: absolute;">
-                        <!--
-                        <img width="100%"  src="img/vn_main_banner.jpg" />
-                        -->
-                        <div style="width: 100%; height: 400px;" class="parallax-window" data-z-index="0" data-speed="0.5" data-parallax="scroll" data-image-src="img/vn_main_banner.jpg"></div>
+                    <div style="width: 100%; height: 100%; position: absolute; text-align: center;">
+                        <img style="width: auto; max-width: 100%; height: auto;" src="img/vn_main_banner.jpg">
                     </div>
                     <div style="width: 100%; height: 50px; text-align: center; background-color: white; opacity: 0.8; position: absolute;">
                         <img height="50px" src="img/vn_Logo_Vietngan_5.jpg"/>
@@ -107,14 +121,10 @@ $(document).ready(function() {
 			</div>
             <!-- END Part 1 -->
             <!-- Part 2 -->
-			<div class="row clearfix" style="margin-top: 20px; background: url(img/80_percent_white_bg.png);">
+			<div class="row clearfix trongsuot-80" style="margin-top: 20px;">
 				<div class="col-md-12 column">
                     <div style="text-align: center;">
-                        <button type="button" class="btn btn-primary hideme trongsuot-0"
-                            style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; color: black; border: solid 1px black; margin-top: 20px; ">
-                            VỀ VIỆT NGÂN
-                        </button>
+                        <div class="trongsuot-0 qd-button">VỀ VIỆT NGÂN</div>
                         <br />
                         <div class="hideme trongsuot-0" style="margin-top: 10px; display: inline-block; width: 60%; text-align: center; border-radius: 7px; padding: 20px;">
                         Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
@@ -126,22 +136,18 @@ $(document).ready(function() {
             <!-- END Part 2 -->
             
             <!-- Part 3 -->
-			<div class="row clearfix" style="margin-top: 20px; background: url(img/0_percent_white_bg.png)">
-				<div class="col-md-12 column">
+			<div class="row clearfix" style="margin-top: 20px;">
+				<div class="col-md-12 column trongsuot-0">
                     <div>
-                        <button type="button" class="btn btn-primary hideme trongsuot-80"
-                            style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; background: url(img/80_percent_white_bg.png); color: black; border: solid 1px black; float: right; margin-right: 10%; ">
-                            HOẠT ĐỘNG
-                        </button>
+                        <div class="qd-button pull-right" style="margin-right: 15%;">HOẠT ĐỘNG</div>
                         <div class="clearfix"></div>
                     </div>
                     <div style="position: relative; text-align: center; margin-top: 10px; height: 400px; width: 650px; margin: 0 auto;">
-                        <div class="hideme" style="position: absolute; margin-top: 50px;">
+                        <div style="position: absolute; margin-top: 50px;">
                             <img style="margin-left: 180px;" width="300px" src="img/vn_hinhthoi.png" />
                         </div>
                         
-                        <div id="click1" class="hideme" style="cursor: pointer; margin-left: 80px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; text-align: center; padding: 10px;">
+                        <div id="click1" style="cursor: pointer; margin-left: 80px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; text-align: center; padding: 10px;">
                             <div style="color: black;" >
                             Bất động sản
                             
@@ -152,7 +158,7 @@ $(document).ready(function() {
                             
                         </div>
                         
-                        <div id="click2" class="hideme" style="cursor: pointer; margin-left: 370px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
+                        <div id="click2" style="cursor: pointer; margin-left: 370px; margin-top: 150px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
                             <div style="color: black;">
                             Bất động sản
                             </div>
@@ -161,7 +167,7 @@ $(document).ready(function() {
                             </div>
                             
                         </div>
-                        <div id="click3" class="hideme" style="margin-left: 230px; margin-top: 290px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
+                        <div id="click3" style="margin-left: 230px; margin-top: 290px; position: absolute; width: 200px; height: 100px; background-color: white; padding: 10px;">
                             <div style="color: black;">
                             Bất động sản
                             <a id="modal-74399" href="#modal-container-74399" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
@@ -180,11 +186,8 @@ $(document).ready(function() {
 			<div class="row clearfix" style="margin-top: 20px; background: url(img/80_percent_white_bg.png)">
 				<div class="col-md-12 column">
                     <div>
-                        <button type="button" class="btn btn-primary hideme trongsuot-0"
-                                style="
-                                border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; color: black; border: solid 1px black; margin-left: 10%; margin-top: 20px;">
-                                HỢP TÁC
-                        </button>
+                        <div class="trongsuot-0 qd-button pull-left" style="margin-left: 15%;">HỢP TÁC</div>
+                        <div class="clearfix"></div>
                     </div>
                     <div class="hideme" style="text-align: center; margin-top: 10px;">
                         <div style="margin-top: 10px; display: inline-block; width: 60%; text-align: center; border-radius: 7px ; padding: 20px;">
@@ -199,33 +202,39 @@ $(document).ready(function() {
 			<div class="row clearfix" style="margin-top: 20px; background: url(img/80_percent_white_bg.png)">
 				<div class="col-md-12 column">
                     <div style="text-align: center;">
-                        <button type="button" class="btn btn-primary hideme trongsuot-0"
-                            style="
-                            border-radius: 0px !important ; padding-left: 30px !important; padding-right: 30px !important; color: black; border: solid 1px black; margin-top: 20px;">
-                            LIÊN HỆ
-                        </button>
+                        
+                        <div class="trongsuot-0 qd-button">LIÊN HỆ</div>                    
                         <br />
                         <div class="hideme" style="margin-top: 10px; display: inline-block; width: 60%; text-align: center; border-radius: 7px ; padding: 20px;">
                         Đội ngũ tư vấn bất động sản VIỆT NGÂN gồm các chuyên viên và cộng sự giàu kinh nghiệm, am hiểu thị trường, có mối quan hệ xã hội sâu rộng, cho phép chúng tôi cung cấp dịch vụ toàn diện với chất lượng cao, đảm bảo lợi ích tối ưu cho khách hàng. Mục tiêu của chúng tôi là xây dựng thương hiệu bất động sản đáng tin cậy hàng đầu thị trường. Chuyên môn của chúng tôi bao gồm
                         </div>
                         <hr style="border: solid 1px white;" />
-                        <div class="hideme" style="height: 70px;">
+                        <div class="hideme" style="height: 60px;">
                             <style>
-                            .social{
-                                margin-left: 20px;
+                            .social-first-left{
+                                margin-left: 0px;
+                                border-radius: 50% 50% 50% 50%;
+                                width: 35px;
+                                height: 35px;
                             }
-                            .social:hover{
-                                opacity: 0.7;
+                            .social{
+                                margin-left: 30px;
+                                border-radius: 50% 50% 50% 50%;
+                                width: 35px;
+                                height: 35px;
+                            }
+                            .social:hover, .social-first-left:hover{
+                                opacity: 0.4;
                             }
                             </style>
                             <a href="facebook.com">
-                                <img class="social" width="35px" height="35px" src="img/vn_facebook.png" style="border-radius: 50% 50% 50% 50%;" />
+                                <img class="social-first-left" src="img/vn_facebook.png"/>
                             </a>
                             <a href="twitter.com">
-                                <img class="social" width="35px" height="35px" src="img/vn_twitter.png" style="border-radius: 50% 50% 50% 50%;" />
+                                <img class="social" src="img/vn_twitter.png"/>
                             </a>
                             <a href="google.com">
-                                <img class="social" width="35px" height="35px" src="img/vn_google.png" style="border-radius: 50% 50% 50% 50%;" />
+                                <img class="social" src="img/vn_google.png" />
                             </a>                  
                         </div>
                             
@@ -236,22 +245,18 @@ $(document).ready(function() {
 			</div>
             <!-- END Part 5 -->
             <!-- Part 5 -->
-			<div class="row clearfix" style="margin-top: 1px; background: url(img/80_percent_white_bg.png)">
+			<div class="row clearfix trongsuot-80" style="margin-top: 1px;">
 				<div class="col-md-12 column">
-                    <div class="hideme" style="text-align: center; padding-top: 40px; padding-bottom: 40px;">
-                        
+                    <div class="hideme" style="text-align: center; padding: 40px;">
                         Copyright &copy; 2015 Việt Ngân
-                        
-                        
                     </div>
                         
 				</div>
 			</div>
             <!-- END Part 5 -->
-			
-			
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
