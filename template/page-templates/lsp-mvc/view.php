@@ -1,0 +1,1 @@
+<textarea rows="20" cols="100" name="txt1" id="txt1" ></textarea>
