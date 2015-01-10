@@ -56,14 +56,14 @@ $default_img = $theme_uri . 'img/favicon.png';
           href="<?= $theme_uri ?>img/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="<?= $theme_uri ?>img/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="<?= ot_get_option('favor_icon', $default_img) ?>">
-
-    <!-- <script type="text/javascript" src="<?= $theme_uri ?>js/jquery.min.js"></script> -->
-    <script type="text/javascript" src="<?= $theme_uri ?>js/jquery-2.1.3.min.js"></script>
+    
+    <script type="text/javascript" src="<?= $theme_uri ?>js/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="<?= $theme_uri ?>js/jquery-2.1.3.min.js"></script> -->
     <!-- <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
     <script type="text/javascript" src="<?= $theme_uri ?>js/bootstrap.min-3.3.1.js"></script>
     <!--<script type="text/javascript" src="<?= $theme_uri ?>js/scripts.js"></script>-->
-    <!-- <script type="text/javascript" src="<?= $theme_uri ?>plugin/bjqs/js/bjqs-1.3.min.js"></script> -->
-    <?php wp_head(); ?>
+    <!-- <?php //wp_head(); ?> -->
+    <!-- wp_head MAY CONFLICT WITH JSSLIDER because of jQuery ver -->
 
     <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/default.css" />
     <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/component.css" />
@@ -73,6 +73,9 @@ $default_img = $theme_uri . 'img/favicon.png';
 </head>
 
 <body <?php body_class(); ?>">
+
+                    
+
 <img style="z-index: 0; position: fixed; min-height: 100%; min-width: 100%" src="<?= ot_get_option('background', $default_img) ?>" >
 <!--POPUP TAG-->
 
@@ -170,7 +173,10 @@ $default_img = $theme_uri . 'img/favicon.png';
         <div class="col-md-12 column">
             <script>
                 $( document ).ready(function() {
-
+                    //load image slider
+                    $( '#cbp-fwslider' ).cbpFWSlider();
+                    
+                    
                     $("#qd-logo-wrapper").height($("#qd-banner").height() / 7);
                     $("#qd-logo").height($("#qd-logo-wrapper").height());
                     $("#qd-logo-wrapper").css("display", "block");
@@ -180,71 +186,51 @@ $default_img = $theme_uri . 'img/favicon.png';
                         $("#qd-logo").height($("#qd-logo-wrapper").height());
                     });
 
-                    $(".hideme").hide();
-                    $(".hideme").slideToggle(1000);
+                    //$(".hideme").hide();
+                    //$(".hideme").slideToggle(1000);
                 });
 
 
             </script>
 
-            <!-- Part 1 Banner -->
-            <div class="row clearfix">
-                <div id="qd-banner" class="col-md-12 column" style="padding: 0px; ">
-                    <!-- STATIC POSITION LOGO -->
-                    <div id="qd-logo-wrapper"
-                        style="z-index: 10; padding: 0; display: none; width: 100%; min-height: 23px; max-height: 55px; text-align: center; background-color: white; opacity: 0.95 ; position: fixed;">
-                        <img id="qd-logo" style="height: 100%; width: auto; max-height: 55px; min-height: 20px; height: 100%;" src="<?= ot_get_option('header_logo', $default_img) ?>"/>
-                    </div>
-                    <!-- END LOGO -->
-                    <!--IMG SLIDER-->
-                    <div style="text-align: center;">
-                        <img style="width: 100%; height: auto;"
-                             src="<?= ot_get_option('header_banner', $default_img) ?>">
-                    </div>
-                    <!--END SLIDER-->
+            
 
+            <!-- Part 1 Slider -->
+            <div class="row clearfix">
+                <div class="col-md-12 column" style="padding: 0px; ">
+                    <div id="qd-banner" class="col-md-12 column" style="padding: 0px; ">
+                        <!-- STATIC POSITION LOGO -->
+                        <div id="qd-logo-wrapper"
+                            style="z-index: 10; padding: 0; display: none; width: 100%; min-height: 23px; max-height: 55px; text-align: center; background-color: white; opacity: 0.95 ; position: fixed;">
+                            <img id="qd-logo" style="height: 100%; width: auto; max-height: 55px; min-height: 20px; height: 100%;" src="<?= ot_get_option('header_logo', $default_img) ?>"/>
+                        </div>
+                        <!-- END LOGO -->
+                        <style>
+                        #cbp-fwslider{
+                            padding: 0;
+                        }
+                        
+                        </style>
+                        <!--IMG SLIDER-->
+                        <div id="cbp-fwslider" class="cbp-fwslider">
+                            <ul>
+                                <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/1.jpg" alt="img01"/></a></li>
+                                <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/2.jpg" alt="img02"/></a></li>
+                                <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/3.jpg" alt="img03"/></a></li>
+                                <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/4.jpg" alt="img04"/></a></li>
+                                <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/5.jpg" alt="img05"/></a></li>
+                            </ul>
+                        </div>
+                        <!--END SLIDER-->
+                        <script>
+                            $(document).ready(function(){
+                                
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
             <!-- END Part 1 -->
-
-            <!-- Part 1.1 Slider -->
-            <div class="row clearfix">
-                <div class="col-md-12 column" style="padding: 0px; ">
-                    <script>
-                        $( function() {
-                            /*
-                             - how to call the plugin:
-                             $( selector ).cbpFWSlider( [options] );
-                             - options:
-                             {
-                             // default transition speed (ms)
-                             speed : 500,
-                             // default transition easing
-                             easing : 'ease'
-                             }
-                             - destroy:
-                             $( selector ).cbpFWSlider( 'destroy' );
-                             */
-
-                            $( '#cbp-fwslider' ).cbpFWSlider();
-
-                        } );
-                    </script>
-                    <!--IMG SLIDER-->
-                    <div id="cbp-fwslider" class="cbp-fwslider">
-                        <ul>
-                            <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/1.jpg" alt="img01"/></a></li>
-                            <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/2.jpg" alt="img02"/></a></li>
-                            <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/3.jpg" alt="img03"/></a></li>
-                            <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/4.jpg" alt="img04"/></a></li>
-                            <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/5.jpg" alt="img05"/></a></li>
-                        </ul>
-                    </div>
-                    <!--END SLIDER-->
-
-                </div>
-            </div>
-            <!-- END Part 1.1 -->
 
             <!-- Part 2 Ve Viet Ngan -->
             <div class="row clearfix trongsuot-80" style="">
@@ -430,6 +416,6 @@ $default_img = $theme_uri . 'img/favicon.png';
         </div>
     </div>
 </div>
-<?php wp_footer(); ?>
+<?php //wp_footer(); ?>
 </body>
 </html>
