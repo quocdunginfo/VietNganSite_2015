@@ -65,7 +65,7 @@ $default_img = $theme_uri . 'img/favicon.png';
     <!-- <?php //wp_head(); ?> -->
     <!-- wp_head MAY CONFLICT WITH JSSLIDER because of jQuery ver -->
 
-    <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/default.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/default.css" /> -->
     <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/component.css" />
     <script src="<?= $theme_uri ?>plugin/jslider/js/modernizr.custom.js"></script>
     <script src="<?= $theme_uri ?>plugin/jslider/js/jquery.cbpFWSlider.min.js"></script>
@@ -185,7 +185,8 @@ $default_img = $theme_uri . 'img/favicon.png';
                         $("#qd-logo-wrapper").height($("#qd-banner").height() / 7);
                         $("#qd-logo").height($("#qd-logo-wrapper").height());
                     });
-
+                    
+                    //show on demand
                     //$(".hideme").hide();
                     //$(".hideme").slideToggle(1000);
                 });
@@ -212,6 +213,15 @@ $default_img = $theme_uri . 'img/favicon.png';
                         
                         </style>
                         <!--IMG SLIDER-->
+                        <style>
+                        .cbp-fwdots span {
+                            width: 18px;
+                            height: 18px;
+                            margin-left: 20px;
+                            border-radius: 0%;
+                            margin-bottom: 50px;
+                        }
+                        </style>
                         <div id="cbp-fwslider" class="cbp-fwslider">
                             <ul>
                                 <li><a href="#"><img src="<?=$theme_uri?>/plugin/jslider/images/1.jpg" alt="img01"/></a></li>
@@ -222,11 +232,7 @@ $default_img = $theme_uri . 'img/favicon.png';
                             </ul>
                         </div>
                         <!--END SLIDER-->
-                        <script>
-                            $(document).ready(function(){
-                                
-                            });
-                        </script>
+                        
                     </div>
                 </div>
             </div>
