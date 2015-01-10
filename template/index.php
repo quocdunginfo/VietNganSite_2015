@@ -134,7 +134,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!--END POPUP TAG -->
 <style>
     .container a {
-        /*text-decoration: none !important;*/
+        text-decoration: none !important;
     }
     .container .qd-pag{
         width: 90%;
@@ -147,16 +147,19 @@ $default_img = $theme_uri . 'img/favicon.png';
     .container {
         color: #575757;
     }
-
+    
     .container .qd-button {
+        font-size: 20px;
         padding: 5px 0px 5px 0px;
         display: inline-block;
         border: solid 1px black;
         white-space: nowrap;
         vertical-align: middle;
-        margin-top: 20px;
+        margin-top: 60px;
         min-width: 220px;
         text-align: center;
+        border: solid 2px #464646;
+        color: #464646;
     }
 
     .container .trongsuot-0 {
@@ -242,7 +245,7 @@ $default_img = $theme_uri . 'img/favicon.png';
             <div class="row clearfix trongsuot-80" style="">
                 <div class="col-md-12 column">
                     <div style="text-align: center;">
-                        <div class="trongsuot-0 qd-button hideme" style="margin-top: 60px;">
+                        <div class="trongsuot-0 qd-button hideme">
                             <?= ot_get_option('sec2_title', $default_string) ?>
                         </div>
                         <br/>
@@ -257,10 +260,10 @@ $default_img = $theme_uri . 'img/favicon.png';
             <!-- END Part 2 -->
 
             <!-- Part 3 Hoat Dong -->
-            <div class="row clearfix" style="margin-top: 20px;">
+            <div class="row clearfix">
                 <div class="col-md-12 column trongsuot-0">
                     <div>
-                        <div class="qd-button pull-right hideme" style="margin-right: 15%; color: white; border: solid 2px white; font-size: 20px;">
+                        <div class="qd-button pull-right hideme" style="margin-right: 15%; color: white; border: solid 2px white;">
                             <?= ot_get_option('sec3_title', $default_string) ?>
                         </div>
                         <div class="clearfix"></div>
@@ -331,7 +334,7 @@ $default_img = $theme_uri . 'img/favicon.png';
             <div class="row clearfix trongsuot-80" style="margin-top: 20px;">
                 <div class="col-md-12 column">
                     <div class="hideme">
-                        <div class="trongsuot-0 qd-button pull-left" style="margin-left: 15%; font-size: 20px; border: solid 2px #464646; color: #464646; margin-top: 60px;">
+                        <div class="trongsuot-0 qd-button pull-left" style="margin-left: 15%;">
                             <?= ot_get_option('sec4_title', $default_string) ?>
                         </div>
                         <div class="clearfix"></div>
@@ -352,7 +355,7 @@ $default_img = $theme_uri . 'img/favicon.png';
                 <div class="col-md-12 column">
                     <div style="text-align: center;">
 
-                        <div class="trongsuot-0 qd-button hideme" style="margin-top: 60px; border: solid 2px #004080; color: #004080; font-size: 20px;">
+                        <div class="trongsuot-0 qd-button hideme" style="border: solid 2px #004080; color: #004080; font-size: 20px;">
                             <?= ot_get_option('sec5_title', $default_string) ?>
                         </div>
                         <br/>
