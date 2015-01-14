@@ -178,28 +178,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 <div class="container" style="z-index: 5; padding: 0 auto; width: 100%;">
 <div class="row clearfix">
 <div class="col-md-12 column">
-<script>
-    $(document).ready(function () {
-        //load image slider
-        $('#cbp-fwslider').cbpFWSlider();
 
-
-        //$("#qd-logo-wrapper").height($("#qd-banner").height() / 3);
-//        $("#qd-logo").height($("#qd-logo-wrapper").height());
-//        $("#qd-logo-wrapper").css("display", "block");
-//
-//        $(window).resize(function () {
-//            $("#qd-logo-wrapper").height($("#qd-banner").height() / 3);
-//            $("#qd-logo").height($("#qd-logo-wrapper").height());
-//        });
-
-        //show on demand
-        //$(".hideme").hide();
-        //$(".hideme").slideToggle(1000);
-    });
-
-
-</script>
 
 
 <!-- Part 1 Slider -->
@@ -237,23 +216,51 @@ $default_img = $theme_uri . 'img/favicon.png';
             </style>
             <!--IMG SLIDER-->
             <style>
-                .cbp-fwdots span {
-                    width: 18px;
-                    height: 18px;
-                    margin-left: 20px;
-                    border-radius: 0%;
-                    margin-bottom: 50px;
+                .carousel-indicators li {
+                    border-radius: 0px;
+                    margin-right: 20px;
+                    height: 30px;
+                    width: 30px;
+                }
+                .carousel-indicators li.active {
+                    border-radius: 0px;
+                    margin-right: 20px;
+                    height: 30px;
+                    width: 30px;
                 }
             </style>
-            <div id="cbp-fwslider" class="cbp-fwslider" style="margin-top: 10px;">
-                <ul>
-                    <li><a href="#"><img src="<?= $theme_uri ?>/plugin/jslider/images/1.jpg" alt="img01"/></a></li>
-                    <li><a href="#"><img src="<?= $theme_uri ?>/plugin/jslider/images/2.jpg" alt="img02"/></a></li>
-                    <li><a href="#"><img src="<?= $theme_uri ?>/plugin/jslider/images/3.jpg" alt="img03"/></a></li>
-                    <li><a href="#"><img src="<?= $theme_uri ?>/plugin/jslider/images/4.jpg" alt="img04"/></a></li>
-                    <li><a href="#"><img src="<?= $theme_uri ?>/plugin/jslider/images/5.jpg" alt="img05"/></a></li>
-                </ul>
+            <!-- BANNER -->
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="http://lorempixel.com/1200/400/sports" style="width:100%" alt="First slide">
+                    </div>
+                    <div class="item">
+                        <img src="http://lorempixel.com/1200/400/people" style="width:100%" data-src=""
+                                           alt="Second    slide">
+
+
+                    </div>
+                    <div class="item">
+                        <img src="http://lorempixel.com/1200/400/abstract" style="width:100%" data-src=""
+                                           alt="Third slide">
+
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
+                        class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel"
+                                                                                data-slide="next"><span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
+            <!-- END BANNER -->
+
             <!--END SLIDER-->
 
         </div>
