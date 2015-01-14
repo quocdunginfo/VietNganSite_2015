@@ -282,13 +282,21 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!-- END Part 2 -->
 <!-- Style: Hoat Dong -->
 <style>
-    @media (min-width: 400px) {
+    @media (min-width: 500px) {
         .qd-hoatdong-wrapper{
-            position: relative; text-align: center; margin-top: 10px; height: 450px; width: 650px; margin: 0 auto;
+            position: relative;
+            text-align: center;
+            margin-top: 10px;
+            height: 450px;
+            width: 650px;
+            margin: 0 auto;
         }
         .qd-hinhthoi-wrapper{
             position: absolute;
             margin-top: 50px;
+        }
+        .qd-hinhthoi-wrapper > img{
+            margin-left: 180px; width: 300px;
         }
         .qd-click {
             cursor: pointer;
@@ -304,8 +312,17 @@ $default_img = $theme_uri . 'img/favicon.png';
         .qd-click .qd-title {
             color: white;
         }
+        #click1{
+            margin-left: 65px; margin-top: 150px;
+        }
+        #click2{
+            margin-left: 370px; margin-top: 150px;
+        }
+        #click3{
+            margin-left: 220px; margin-top: 290px;
+        }
     }
-    @media (min-width: 0px) and (max-width: 399px) {
+    @media (min-width: 0px) and (max-width: 499px) {
         .qd-hinhthoi-wrapper {
             text-align: center;
             position: absolute;
@@ -314,6 +331,10 @@ $default_img = $theme_uri . 'img/favicon.png';
             left: 0;
             right: 0;
             margin-top: 50px;
+
+        }
+        .qd-hinhthoi-wrapper > img {
+            width: 220px; height: 50%;
         }
 
         .qd-hoatdong-wrapper {
@@ -345,6 +366,15 @@ $default_img = $theme_uri . 'img/favicon.png';
         .qd-click .qd-title {
             color: white;
         }
+        #click1{
+            /*N/A*/
+        }
+        #click2{
+            margin-top: 120px;
+        }
+        #click3{
+            margin-top: 230px;
+        }
     }
 </style>
 <!-- END Style: Hoat Dong -->
@@ -359,9 +389,9 @@ $default_img = $theme_uri . 'img/favicon.png';
         </div>
         <div class="qd-hoatdong-wrapper">
             <div class="hideme qd-hinhthoi-wrapper">
-                <img style="margin-left: 180px;" width="300px" src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
+                <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
             </div>
-            <div class="hideme qd-click" id="click1" style="margin-left: 65px; margin-top: 150px;">
+            <div class="hideme qd-click" id="click1">
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item1_title', $default_string) ?>
 
@@ -372,7 +402,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 
             </div>
 
-            <div class="hideme qd-click" id="click2" style="margin-left: 370px; margin-top: 150px;">
+            <div class="hideme qd-click" id="click2">
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item2_title', $default_string) ?>
                 </div>
@@ -382,7 +412,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 
             </div>
 
-            <div class="hideme qd-click" id="click3" style="margin-left: 230px; margin-top: 290px;">
+            <div class="hideme qd-click" id="click3">
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item3_title', $default_string) ?>
                 </div>
@@ -408,66 +438,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!-- END Part 3 -->
 
 
-<!-- Part 3.1 Hoat Dong beta -->
-<div class="row clearfix">
-    <div class="col-md-12 column trongsuot-0">
-        <div>
-            <div class="qd-button pull-right hideme trongsuot-blue-80" style="margin-right: 15%; color: ; border: solid 2px white; border: none; color: white;">
-                <?= ot_get_option('sec3_title', $default_string) ?>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="qd-hoatdong-wrapper">
 
-            <div  class="hideme qd-hinhthoi-wrapper">
-                <img style="width: 220px; height: 50%" src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
-            </div>
-            <!--END for mobile -->
-            <div class="hideme qd-click" id="click1">
-                <div class="qd-title">
-                    <?= ot_get_option('sec3_item1_title', $default_string) ?>
-
-                </div>
-                <div style="margin-top: 10px;">
-                    <?= ot_get_option('sec3_item1_desc', $default_string) ?>
-                </div>
-
-            </div>
-
-            <div class="hideme qd-click" id="click2" style="margin-top: 120px;">
-                <div class="qd-title">
-                    <?= ot_get_option('sec3_item2_title', $default_string) ?>
-                </div>
-                <div style="margin-top: 10px;">
-                    <?= ot_get_option('sec3_item2_desc', $default_string) ?>
-                </div>
-
-            </div>
-
-            <div class="hideme qd-click" id="click3" style="margin-top: 230px;">
-                <div class="qd-title">
-                    <?= ot_get_option('sec3_item3_title', $default_string) ?>
-                </div>
-                <div style="margin-top: 10px;">
-                    <?= ot_get_option('sec3_item3_desc', $default_string) ?>
-                </div>
-            </div>
-            <script>
-                $("#click1").click(function () {
-                    $('#modal-container-1').modal('show');
-                });
-                $("#click2").click(function () {
-                    $('#modal-container-2').modal('show');
-                });
-                $("#click3").click(function () {
-                    $('#modal-container-3').modal('show');
-                });
-            </script>
-        </div>
-
-    </div>
-</div>
-<!-- END Part 3.1 -->
 
 
 <!-- Part 4 Hop Tac -->
