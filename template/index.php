@@ -179,7 +179,21 @@ $default_img = $theme_uri . 'img/favicon.png';
 <div class="row clearfix">
 <div class="col-md-12 column">
 
+<!-- SHOW EFFECT -->
+<script>
+    $(document).ready(function() {
+        tiles = $(".hideme").fadeTo(0, 0);
 
+        $(window).scroll(function(d,h) {
+            tiles.each(function(i) {
+                a = $(this).offset().top + $(this).height();
+                b = $(window).scrollTop() + $(window).height();
+                if (a < b) $(this).delay(700).fadeTo(500,1);
+            });
+        });
+    });
+</script>
+<!-- END SHOW EFFECT -->
 
 <!-- Part 1 Slider -->
 <div class="row clearfix">
@@ -216,17 +230,35 @@ $default_img = $theme_uri . 'img/favicon.png';
             </style>
             <!--IMG SLIDER-->
             <style>
-                .carousel-indicators li {
-                    border-radius: 0px;
-                    margin-right: 20px;
-                    height: 30px;
-                    width: 30px;
+                @media (min-width: 0px) and (max-width: 499px) {
+                    .carousel-indicators li {
+                        border-radius: 0px;
+                        margin-right: 20px;
+                        height: 15px;
+                        width: 15px;
+                    }
+
+                    .carousel-indicators li.active {
+                        border-radius: 0px;
+                        margin-right: 20px;
+                        height: 15px;
+                        width: 15px;
+                    }
                 }
-                .carousel-indicators li.active {
-                    border-radius: 0px;
-                    margin-right: 20px;
-                    height: 30px;
-                    width: 30px;
+                @media (min-width: 500px) {
+                    .carousel-indicators li {
+                        border-radius: 0px;
+                        margin-right: 20px;
+                        height: 30px;
+                        width: 30px;
+                    }
+
+                    .carousel-indicators li.active {
+                        border-radius: 0px;
+                        margin-right: 20px;
+                        height: 30px;
+                        width: 30px;
+                    }
                 }
             </style>
             <!-- BANNER -->
@@ -240,16 +272,16 @@ $default_img = $theme_uri . 'img/favicon.png';
                 </ol>
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="http://lorempixel.com/1200/400/sports" style="width:100%" alt="First slide">
+                        <img src="<?= ot_get_option('header_banner_1', $default_img) ?>" style="width:100%" alt="First slide">
                     </div>
                     <div class="item">
-                        <img src="http://lorempixel.com/1200/400/people" style="width:100%" data-src=""
+                        <img src="<?= ot_get_option('header_banner_2', $default_img) ?>" style="width:100%" data-src=""
                                            alt="Second    slide">
 
 
                     </div>
                     <div class="item">
-                        <img src="http://lorempixel.com/1200/400/abstract" style="width:100%" data-src=""
+                        <img src="<?= ot_get_option('header_banner_3', $default_img) ?>" style="width:100%" data-src=""
                                            alt="Third slide">
 
                     </div>
@@ -366,7 +398,7 @@ $default_img = $theme_uri . 'img/favicon.png';
             right: 0;
             margin-left: auto;
             margin-right: auto;
-            font-size: 14px;
+            font-size: 12px;
             margin-top: 10px;
         }
 
@@ -394,11 +426,11 @@ $default_img = $theme_uri . 'img/favicon.png';
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="qd-hoatdong-wrapper">
-            <div class="hideme qd-hinhthoi-wrapper">
+        <div class="qd-hoatdong-wrapper hideme">
+            <div class="qd-hinhthoi-wrapper">
                 <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
             </div>
-            <div class="hideme qd-click" id="click1">
+            <div class="qd-click" id="click1">
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item1_title', $default_string) ?>
 
@@ -409,7 +441,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 
             </div>
 
-            <div class="hideme qd-click" id="click2">
+            <div class="qd-click" id="click2">
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item2_title', $default_string) ?>
                 </div>
@@ -419,7 +451,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 
             </div>
 
-            <div class="hideme qd-click" id="click3">
+            <div class="qd-click" id="click3">
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item3_title', $default_string) ?>
                 </div>
@@ -451,8 +483,8 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!-- Part 4 Hop Tac -->
 <div class="row clearfix trongsuot-80" style="margin-top: 20px;">
     <div class="col-md-12 column">
-        <div class="hideme">
-            <div class="trongsuot-0 qd-button pull-left" style="margin-left: 15%;">
+        <div>
+            <div class="trongsuot-0 qd-button pull-left hideme" style="margin-left: 15%;">
                 <?= ot_get_option('sec4_title', $default_string) ?>
             </div>
             <div class="clearfix"></div>
@@ -532,7 +564,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 </div>
 <!-- END Part 5 -->
 <!-- Part 6 Copyright Statement -->
-<div class="row clearfix" style="margin-top: 0px; background-color: #DBDBDB; opacity: 0.9;">
+<div class="row clearfix" style="margin-top: 0px; background-color: <?= ot_get_option('sec6_bg_color', $default_string) ?>; opacity: 0.9;">
     <div class="col-md-12 column">
         <div class="hideme" style="text-align: center; padding: 40px 0px 35px 0px;">
             <?= ot_get_option('footer_text', $default_string) ?>
@@ -544,6 +576,6 @@ $default_img = $theme_uri . 'img/favicon.png';
 </div>
 </div>
 </div>
-<?php //wp_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 </html>
