@@ -46,13 +46,7 @@ $default_img = $theme_uri . 'img/favicon.png';
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-          href="<?= $theme_uri ?>img/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-          href="<?= $theme_uri ?>img/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-          href="<?= $theme_uri ?>img/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<?= $theme_uri ?>img/apple-touch-icon-57-precomposed.png">
+
     <link rel="shortcut icon" href="<?= ot_get_option('favor_icon', $default_img) ?>">
 
     <script type="text/javascript" src="<?= $theme_uri ?>js/jquery.min.js"></script>
@@ -128,52 +122,213 @@ $default_img = $theme_uri . 'img/favicon.png';
     </div>
 
 </div>
-
-<!--END POPUP TAG -->
 <style>
-    .container a {
-        text-decoration: none !important;
+/*General*/
+.container .qd-button {
+    width: 220px;
+}
+
+.container a {
+    text-decoration: none !important;
+}
+
+.container .qd-pag {
+    width: 90%;
+    max-width: 600px;
+    min-width: 200px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.container {
+    color: #575757;
+    font-size: 16px;
+}
+
+.container .trongsuot-0 {
+    background: url(<?=$theme_uri?>img/0_percent_white_bg.png);
+}
+
+.container .trongsuot-80 {
+    background: url(<?=$theme_uri?>img/80_percent_white_bg.png);
+}
+
+.container .trongsuot-blue-80 {
+    background: url(<?=$theme_uri?>img/80_percent_blue_bg.png);
+}
+
+.container .qd-button {
+    font-size: 20px;
+    padding: 5px 0px 5px 0px;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-top: 60px;
+    min-width: 200px;
+    text-align: center;
+    border: solid 2px #464646;
+    color: #464646;
+    width: 220px;
+    height: 40px;
+}
+
+#qd-button-hoatdong {
+    padding: 7px 0px 3px 0px; /*because of no-border*/
+}
+
+/*iPad, PC*/
+@media (min-width: 680px) {
+    /*About Viet Ngan*/
+    #qd-button-about {
+        float: left;
+        margin-left: 15%;
     }
 
-    .container .qd-pag {
-        width: 90%;
-        max-width: 600px;
-        display: inline-block;
+    /*HOAT DONG*/
+    #qd-button-hoatdong {
+        float: right;
+        margin-right: 15%;
+        width: 220px;
+        height: 40px;
+    }
+
+    .qd-hoatdong-wrapper {
+        position: relative;
         text-align: center;
-        margin-top: 10px;
-        padding: 0;
+        height: 450px;
+        width: 650px;
+        margin: 0 auto;
     }
 
-    .container {
-        color: #575757;
-        font-size: 16px;
+    .qd-hinhthoi-wrapper {
+        position: absolute;
+        margin-top: 50px;
     }
 
+    .qd-hinhthoi-wrapper > img {
+        margin-left: 180px;
+        width: 300px;
+    }
+
+    .qd-click {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #3973b1;
+        height: 100px;
+        position: absolute;
+        text-align: center;
+        color: #EEEEEE;
+        width: 220px;
+    }
+
+    .qd-click .qd-title {
+        color: white;
+    }
+
+    #click1 {
+        margin-left: 65px;
+        margin-top: 150px;
+    }
+
+    #click2 {
+        margin-left: 370px;
+        margin-top: 150px;
+    }
+
+    #click3 {
+        margin-left: 220px;
+        margin-top: 290px;
+    }
+
+    .qd-button {
+        width: 220px;
+    }
+
+    /*Hợp tác*/
+    #qd-button-hoptac {
+        float: left;
+        margin-left: 15%;
+    }
+
+}
+
+/*MOBILE*/
+@media (min-width: 0px) and (max-width: 679px) {
     .container .qd-button {
-        font-size: 20px;
-        padding: 5px 0px 5px 0px;
-        display: inline-block;
-        border: solid 1px black;
-        white-space: nowrap;
-        vertical-align: middle;
-        margin-top: 60px;
-        min-width: 220px;
+        width: 200px;
+    }
+
+    /*Về việt ngân*/
+    #qd-button-about {
+
+    }
+
+    /*Hoạt động*/
+    #qd-button-hoatdong {
+
+    }
+
+    .qd-hinhthoi-wrapper {
         text-align: center;
-        border: solid 2px #464646;
-        color: #464646;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        margin-top: 50px;
     }
 
-    .container .trongsuot-0 {
-        background: url(<?=$theme_uri?>img/0_percent_white_bg.png);
+    .qd-hinhthoi-wrapper > img {
+        width: 220px;
+        height: 50%;
     }
 
-    .container .trongsuot-80 {
-        background: url(<?=$theme_uri?>img/80_percent_white_bg.png);
+    .qd-hoatdong-wrapper {
+        position: relative;
+        text-align: center;
+        height: 350px;
+        width: 100%;
+        margin: auto;
+        margin-top: 15px;
     }
-    .container .trongsuot-blue-80 {
-        background: url(<?=$theme_uri?>img/80_percent_blue_bg.png);
+
+    .qd-click {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #3973b1;
+        width: 200px;
+        height: 85px;
+        text-align: center;
+        color: #EEEEEE;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+        margin-top: 10px;
     }
+
+    .qd-click .qd-title {
+        color: white;
+    }
+
+    #click2 {
+        margin-top: 120px;
+    }
+
+    #click3 {
+        margin-top: 230px;
+    }
+
+    .qd-button {
+        width: 200px;
+    }
+}
 </style>
+<!--END POPUP TAG -->
 
 <div class="container" style="z-index: 5; padding: 0 auto; width: 100%;">
 <div class="row clearfix">
@@ -181,14 +336,14 @@ $default_img = $theme_uri . 'img/favicon.png';
 
 <!-- SHOW EFFECT -->
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         tiles = $(".hideme").fadeTo(0, 0);
 
-        $(window).scroll(function(d,h) {
-            tiles.each(function(i) {
+        $(window).scroll(function (d, h) {
+            tiles.each(function (i) {
                 a = $(this).offset().top + $(this).height();
                 b = $(window).scrollTop() + $(window).height();
-                if (a < b) $(this).delay(700).fadeTo(500,1);
+                if (a < b) $(this).delay(50).fadeTo(300, 1);
             });
         });
     });
@@ -201,21 +356,22 @@ $default_img = $theme_uri . 'img/favicon.png';
         <div id="qd-banner" class="col-md-12 column" style="padding: 0px; ">
             <!-- STATIC POSITION LOGO -->
             <style>
-            @media (min-width: 0px) and (max-width: 798px) {
-                #qd-logo, #qd-logo-wrapper {
-                    height: 40px;
+                @media (min-width: 0px) and (max-width: 679px) {
+                    #qd-logo, #qd-logo-wrapper {
+                        height: 40px;
+                    }
                 }
-            }
 
-            @media (min-width: 799px) {
-                #qd-logo, #qd-logo-wrapper {
-                    height: 85px;
+                @media (min-width: 680px) {
+                    #qd-logo, #qd-logo-wrapper {
+                        height: <?=ot_get_option('header_logo_height', $default_string)?>;
+                    }
                 }
-            }
             </style>
             <div id="qd-logo-wrapper"
-                 style="z-index: 10; padding: 0;width: 100%; max-height: 85px; text-align: center; background-color: white; opacity: 0.9 ; ">
-                <img id="qd-logo" style="height: 100%; width: auto; max-height: 85px; min-height: 25px; height: 100%;"
+                 style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white; opacity: 0.9 ; ">
+                <img id="qd-logo"
+                     style="height: 100%; width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: 25px; height: 100%;"
                      src="<?= ot_get_option('header_logo', $default_img) ?>"/>
             </div>
             <!-- END LOGO -->
@@ -223,6 +379,7 @@ $default_img = $theme_uri . 'img/favicon.png';
                 #cbp-fwslider {
                     padding: 0;
                 }
+
                 .cbp-fwprev, .cbp-fwnext {
                     display: none !important;
                 }
@@ -230,34 +387,35 @@ $default_img = $theme_uri . 'img/favicon.png';
             </style>
             <!--IMG SLIDER-->
             <style>
-                @media (min-width: 0px) and (max-width: 499px) {
-                    .carousel-indicators li {
-                        border-radius: 0px;
-                        margin-right: 20px;
-                        height: 15px;
-                        width: 15px;
-                    }
-
-                    .carousel-indicators li.active {
-                        border-radius: 0px;
-                        margin-right: 20px;
-                        height: 15px;
-                        width: 15px;
-                    }
+                .carousel-indicators li {
+                    border-radius: 0px;
+                    margin-right: 20px;
+                    height: 30px;
+                    width: 30px;
+                    background-color: white;
+                    opacity: 0.4;
                 }
-                @media (min-width: 500px) {
+
+                .carousel-indicators li.active {
+                    border-radius: 0px;
+                    margin-right: 20px;
+                    height: 30px;
+                    width: 30px;
+                    background-color: white;
+                    opacity: 0.8;
+                }
+
+                @media (min-width: 0px) and (max-width: 679px) {
                     .carousel-indicators li {
-                        border-radius: 0px;
                         margin-right: 20px;
-                        height: 30px;
-                        width: 30px;
+                        height: 15px;
+                        width: 15px;
                     }
 
                     .carousel-indicators li.active {
-                        border-radius: 0px;
                         margin-right: 20px;
-                        height: 30px;
-                        width: 30px;
+                        height: 15px;
+                        width: 15px;
                     }
                 }
             </style>
@@ -266,30 +424,41 @@ $default_img = $theme_uri . 'img/favicon.png';
                 <!-- Indicators -->
 
                 <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <?php
+                    for ($i = 1; $i <= 4; $i++):
+                        if (ot_get_option('header_banner_' . $i, '') != ''):
+                            ?>
+                            <li data-target="#myCarousel" data-slide-to="<?= $i - 1 ?>"
+                                class="<?php if ($i == 1) echo 'active'; ?>"></li>
+                        <?php
+                        endif;
+                    endfor;
+                    ?>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="<?= ot_get_option('header_banner_1', $default_img) ?>" style="width:100%" alt="First slide">
-                    </div>
-                    <div class="item">
-                        <img src="<?= ot_get_option('header_banner_2', $default_img) ?>" style="width:100%" data-src=""
-                                           alt="Second    slide">
-
-
-                    </div>
-                    <div class="item">
-                        <img src="<?= ot_get_option('header_banner_3', $default_img) ?>" style="width:100%" data-src=""
-                                           alt="Third slide">
-
-                    </div>
+                    <?php
+                    for ($i = 1; $i <= 4; $i++):
+                        if (ot_get_option('header_banner_' . $i, '') != ''):
+                            ?>
+                            <div class="item <?php if ($i == 1) echo 'active'; ?>">
+                                <img src="<?= ot_get_option('header_banner_' . $i, $default_img) ?>" style="width:100%"
+                                     alt="Slide <?= $i ?>">
+                            </div>
+                        <?php
+                        endif;
+                    endfor;
+                    ?>
                 </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
-                        class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel"
-                                                                                data-slide="next"><span
+
+                <a style="display: none" class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span
+                        class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a style="display: none" class="right carousel-control" href="#myCarousel"
+                   data-slide="next"><span
                         class="glyphicon glyphicon-chevron-right"></span></a>
+
+
             </div>
             <!-- END BANNER -->
 
@@ -304,7 +473,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 <div class="row clearfix trongsuot-80" style="">
     <div class="col-md-12 column">
         <div style="text-align: center;">
-            <div class="trongsuot-0 qd-button hideme pull-left" style="margin-left: 15%;">
+            <div id="qd-button-about" class="trongsuot-0 qd-button hideme">
                 <?= ot_get_option('sec2_title', $default_string) ?>
             </div>
             <div style="clear: both;"></div>
@@ -319,113 +488,14 @@ $default_img = $theme_uri . 'img/favicon.png';
     </div>
 </div>
 <!-- END Part 2 -->
-<!-- Style: Hoat Dong -->
-<style>
-    @media (min-width: 500px) {
-        .qd-hoatdong-wrapper{
-            position: relative;
-            text-align: center;
-            margin-top: 10px;
-            height: 450px;
-            width: 650px;
-            margin: 0 auto;
-        }
-        .qd-hinhthoi-wrapper{
-            position: absolute;
-            margin-top: 50px;
-        }
-        .qd-hinhthoi-wrapper > img{
-            margin-left: 180px; width: 300px;
-        }
-        .qd-click {
-            cursor: pointer;
-            padding: 10px;
-            background-color: #3973b1;
-            width: 200px;
-            height: 100px;
-            position: absolute;
-            text-align: center;
-            color: #EEEEEE;
-            width: 220px;
-        }
-        .qd-click .qd-title {
-            color: white;
-        }
-        #click1{
-            margin-left: 65px; margin-top: 150px;
-        }
-        #click2{
-            margin-left: 370px; margin-top: 150px;
-        }
-        #click3{
-            margin-left: 220px; margin-top: 290px;
-        }
-    }
-    @media (min-width: 0px) and (max-width: 499px) {
-        .qd-hinhthoi-wrapper {
-            text-align: center;
-            position: absolute;
-            margin-left: auto;
-            margin-right: auto;
-            left: 0;
-            right: 0;
-            margin-top: 50px;
-
-        }
-        .qd-hinhthoi-wrapper > img {
-            width: 220px; height: 50%;
-        }
-
-        .qd-hoatdong-wrapper {
-            position: relative;
-            text-align: center;
-            margin-top: 10px;
-            height: 400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .qd-click {
-            cursor: pointer;
-            padding: 10px;
-            background-color: #3973b1;
-            width: 200px;
-            height: 85px;
-            text-align: center;
-            color: #EEEEEE;
-            position: absolute;
-            left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-
-        .qd-click .qd-title {
-            color: white;
-        }
-        #click1{
-            /*N/A*/
-        }
-        #click2{
-            margin-top: 120px;
-        }
-        #click3{
-            margin-top: 230px;
-        }
-    }
-</style>
-<!-- END Style: Hoat Dong -->
 <!-- Part 3 Hoat Dong -->
 <div class="row clearfix">
-    <div class="col-md-12 column trongsuot-0">
-        <div>
-            <div class="qd-button pull-right hideme trongsuot-blue-80" style="margin-right: 15%; color: ; border: solid 2px white; border: none; color: white;">
-                <?= ot_get_option('sec3_title', $default_string) ?>
-            </div>
-            <div class="clearfix"></div>
+    <div class="col-md-12 column trongsuot-0" style="text-align: center">
+        <div id="qd-button-hoatdong" class="qd-button hideme trongsuot-blue-80"
+             style="color: ; border: solid 2px white; border: none; color: white;">
+            <?= ot_get_option('sec3_title', $default_string) ?>
         </div>
+        <div class="clearfix"></div>
         <div class="qd-hoatdong-wrapper hideme">
             <div class="qd-hinhthoi-wrapper">
                 <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
@@ -477,18 +547,15 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!-- END Part 3 -->
 
 
-
-
-
 <!-- Part 4 Hop Tac -->
 <div class="row clearfix trongsuot-80" style="margin-top: 20px;">
-    <div class="col-md-12 column">
-        <div>
-            <div class="trongsuot-0 qd-button pull-left hideme" style="margin-left: 15%;">
-                <?= ot_get_option('sec4_title', $default_string) ?>
-            </div>
-            <div class="clearfix"></div>
+    <div class="col-md-12 column" style="text-align: center">
+
+        <div id="qd-button-hoptac" class="trongsuot-0 qd-button hideme">
+            <?= ot_get_option('sec4_title', $default_string) ?>
         </div>
+        <div style="clear: both"></div>
+
         <div class="hideme" style="text-align: center">
             <div class="qd-pag"
                 >
@@ -505,8 +572,8 @@ $default_img = $theme_uri . 'img/favicon.png';
     <div class="col-md-12 column">
         <div style="text-align: center;">
 
-            <div class="trongsuot-0 qd-button hideme"
-                 style="border: solid 2px #004080; color: #004080; font-size: 20px;">
+            <div id="qd-button-lienhe" class="trongsuot-0 qd-button hideme"
+                 style="border: solid 2px #004080; color: #004080;">
                 <?= ot_get_option('sec5_title', $default_string) ?>
             </div>
             <br/>
@@ -564,9 +631,10 @@ $default_img = $theme_uri . 'img/favicon.png';
 </div>
 <!-- END Part 5 -->
 <!-- Part 6 Copyright Statement -->
-<div class="row clearfix" style="margin-top: 0px; background-color: <?= ot_get_option('sec6_bg_color', $default_string) ?>; opacity: 0.9;">
+<div class="row clearfix"
+     style="margin-top: 0px; background-color: <?= ot_get_option('sec6_bg_color', $default_string) ?>; opacity: 0.9;">
     <div class="col-md-12 column">
-        <div class="hideme" style="text-align: center; padding: 40px 0px 35px 0px;">
+        <div class="hideme" style="text-align: center; padding: 40px 0px 27px 0px;">
             <?= ot_get_option('footer_text', $default_string) ?>
         </div>
 
