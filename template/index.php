@@ -577,7 +577,7 @@ $animation_delay = '0.6s';
             </div>
             <br/>
 
-            <div class="qd-pag  wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
+            <div class="qd-pag wow fadeInDown" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
                  style="color: #004080;">
                 <?= ot_get_option('sec5_content', $default_string) ?>
             </div>
@@ -592,7 +592,7 @@ $animation_delay = '0.6s';
                 </style>
                 <!-- <hr class="style-six" style="width: 72%"/> -->
             </div>
-            <div style="margin-top: 30px; height: 70px; vertical-align: middle;">
+            <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInDown" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
                 <style>
                     .social-first-left {
                         margin-left: 0px;
@@ -633,7 +633,7 @@ $animation_delay = '0.6s';
 <div class="row clearfix"
      style="margin-top: 0px; background-color: <?= ot_get_option('sec6_bg_color', $default_string) ?>; opacity: 0.9;">
     <div class="col-md-12 column">
-        <div id="qd-footer-copyright" class="wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>" style="text-align: center; padding: 40px 0px 27px 0px;">
+        <div id="qd-footer-copyright" class="wow fadeInDown" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>" style="text-align: center; padding: 40px 0px 27px 0px;">
             <?= ot_get_option('footer_text', $default_string) ?>
         </div>
 
