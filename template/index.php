@@ -17,7 +17,8 @@ $theme_uri = get_stylesheet_directory_uri() . '/';
 $default_string = '[not set]';
 $default_url = '#';
 $default_img = $theme_uri . 'img/favicon.png';
-
+$animation_duration = '0.5s';
+$animation_delay = '0.6s';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -366,7 +367,7 @@ $default_img = $theme_uri . 'img/favicon.png';
                 }
             </style>
             <div id="qd-logo-wrapper"
-                 style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white; opacity: 0.9 ; ">
+                 style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white; opacity: 0.9 ; " class="wow fadeIn" data-wow-duration="1s">
                 <img id="qd-logo"
                      style="height: 100%; width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: 25px; height: 100%;"
                      src="<?= ot_get_option('header_logo', $default_img) ?>"/>
@@ -417,7 +418,7 @@ $default_img = $theme_uri . 'img/favicon.png';
                 }
             </style>
             <!-- BANNER -->
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="myCarousel" data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
                 <!-- Indicators -->
 
                 <ol class="carousel-indicators">
@@ -470,13 +471,13 @@ $default_img = $theme_uri . 'img/favicon.png';
 <div class="row clearfix trongsuot-80" style="">
     <div class="col-md-12 column">
         <div style="text-align: center;">
-            <div id="qd-button-about" class="trongsuot-0 qd-button hideme">
+            <div id="qd-button-about" class="trongsuot-0 qd-button wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
                 <?= ot_get_option('sec2_title', $default_string) ?>
             </div>
             <div style="clear: both;"></div>
             <br/>
 
-            <div class="hideme trongsuot-0 qd-pag"
+            <div class="trongsuot-0 qd-pag wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
                  style="display: inline-block;">
                 <?= ot_get_option('sec2_content', $default_string) ?>
             </div>
@@ -488,13 +489,13 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!-- Part 3 Hoat Dong -->
 <div class="row clearfix">
     <div class="col-md-12 column trongsuot-0" style="text-align: center">
-        <div id="qd-button-hoatdong" class="qd-button hideme trongsuot-blue-80"
+        <div id="qd-button-hoatdong" class="qd-button trongsuot-blue-80 wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
              style="color: ; border: solid 2px white; border: none; color: white;">
             <?= ot_get_option('sec3_title', $default_string) ?>
         </div>
         <div class="clearfix"></div>
 
-        <div class="qd-hoatdong-wrapper wow fadeInUp">
+        <div class="qd-hoatdong-wrapper wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
             <div class="qd-hinhthoi-wrapper">
                 <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
             </div>
@@ -549,12 +550,12 @@ $default_img = $theme_uri . 'img/favicon.png';
 <div class="row clearfix trongsuot-80" style="margin-top: 20px;">
     <div class="col-md-12 column" style="text-align: center">
 
-        <div id="qd-button-hoptac" class="trongsuot-0 qd-button hideme">
+        <div id="qd-button-hoptac" class="trongsuot-0 qd-button wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
             <?= ot_get_option('sec4_title', $default_string) ?>
         </div>
         <div style="clear: both"></div>
 
-        <div class="hideme" style="text-align: center">
+        <div style="text-align: center" class="wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
             <div class="qd-pag"
                 >
                 <?= ot_get_option('sec4_content', $default_string) ?>
@@ -570,13 +571,13 @@ $default_img = $theme_uri . 'img/favicon.png';
     <div class="col-md-12 column">
         <div style="text-align: center;">
 
-            <div id="qd-button-lienhe" class="trongsuot-0 qd-button hideme"
-                 style="border: solid 2px #004080; color: #004080;">
+            <div id="qd-button-lienhe"
+                 style="border: solid 2px #004080; color: #004080;" class="trongsuot-0 qd-button wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
                 <?= ot_get_option('sec5_title', $default_string) ?>
             </div>
             <br/>
 
-            <div class="hideme qd-pag"
+            <div class="qd-pag  wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
                  style="color: #004080;">
                 <?= ot_get_option('sec5_content', $default_string) ?>
             </div>
@@ -591,7 +592,7 @@ $default_img = $theme_uri . 'img/favicon.png';
                 </style>
                 <!-- <hr class="style-six" style="width: 72%"/> -->
             </div>
-            <div class="hideme" style="margin-top: 30px; height: 70px; vertical-align: middle;">
+            <div style="margin-top: 30px; height: 70px; vertical-align: middle;">
                 <style>
                     .social-first-left {
                         margin-left: 0px;
@@ -632,7 +633,7 @@ $default_img = $theme_uri . 'img/favicon.png';
 <div class="row clearfix"
      style="margin-top: 0px; background-color: <?= ot_get_option('sec6_bg_color', $default_string) ?>; opacity: 0.9;">
     <div class="col-md-12 column">
-        <div class="hideme" style="text-align: center; padding: 40px 0px 27px 0px;">
+        <div id="qd-footer-copyright" class="wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>" style="text-align: center; padding: 40px 0px 27px 0px;">
             <?= ot_get_option('footer_text', $default_string) ?>
         </div>
 
@@ -646,8 +647,10 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!-- WOW -->
 <script src="<?=$theme_uri?>plugin/wow/wow.min.js"></script>
 <script>
-    wow = new WOW();
-    wow.init();
+    $(document).ready(function(){
+        wow = new WOW();
+        wow.init();
+    });
 </script>
 </body>
 </html>
