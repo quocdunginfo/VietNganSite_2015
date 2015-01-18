@@ -22,8 +22,10 @@ $default_img = $theme_uri . 'img/favicon.png';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta charset="utf-8">
     <title><?= ot_get_option('site_title', $default_string) ?></title>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= ot_get_option('seo_meta_desc', $default_string) ?>">
     <meta name="keywords" content="<?= ot_get_option('seo_meta_keywords', $default_string) ?>"/>
@@ -56,16 +58,11 @@ $default_img = $theme_uri . 'img/favicon.png';
     <!--<script type="text/javascript" src="<?= $theme_uri ?>js/scripts.js"></script>-->
     <!-- <?php //wp_head(); ?> -->
     <!-- wp_head MAY CONFLICT WITH JSSLIDER because of jQuery ver -->
-
-    <!-- <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/default.css" /> -->
-    <link rel="stylesheet" type="text/css" href="<?= $theme_uri ?>plugin/jslider/css/component.css"/>
-    <script src="<?= $theme_uri ?>plugin/jslider/js/modernizr.custom.js"></script>
-    <script src="<?= $theme_uri ?>plugin/jslider/js/jquery.cbpFWSlider.min.js"></script>
+    <link rel="stylesheet" href="<?= $theme_uri ?>plugin/wow/animate.css">
 
 </head>
 
 <body <?php body_class(); ?>">
-
 
 <img style="z-index: 0; position: fixed; min-height: 100%; min-width: 100%"
      src="<?= ot_get_option('background', $default_img) ?>">
@@ -336,17 +333,17 @@ $default_img = $theme_uri . 'img/favicon.png';
 
 <!-- SHOW EFFECT -->
 <script>
-    $(document).ready(function () {
-        tiles = $(".hideme").fadeTo(0, 0);
-
-        $(window).scroll(function (d, h) {
-            tiles.each(function (i) {
-                a = $(this).offset().top + $(this).height();
-                b = $(window).scrollTop() + $(window).height();
-                if (a < b) $(this).delay(50).fadeTo(300, 1);
-            });
-        });
-    });
+//    $(document).ready(function () {
+//        tiles = $(".hideme").fadeTo(0, 0);
+//
+//        $(window).scroll(function (d, h) {
+//            tiles.each(function (i) {
+//                a = $(this).offset().top + $(this).height();
+//                b = $(window).scrollTop() + $(window).height();
+//                if (a < b) $(this).delay(50).fadeTo(300, 1);
+//            });
+//        });
+//    });
 </script>
 <!-- END SHOW EFFECT -->
 
@@ -496,7 +493,8 @@ $default_img = $theme_uri . 'img/favicon.png';
             <?= ot_get_option('sec3_title', $default_string) ?>
         </div>
         <div class="clearfix"></div>
-        <div class="qd-hoatdong-wrapper hideme">
+
+        <div class="qd-hoatdong-wrapper wow fadeInUp">
             <div class="qd-hinhthoi-wrapper">
                 <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
             </div>
@@ -644,6 +642,12 @@ $default_img = $theme_uri . 'img/favicon.png';
 </div>
 </div>
 </div>
-<?php wp_footer(); ?>
+<?php //wp_footer(); ?>
+<!-- WOW -->
+<script src="<?=$theme_uri?>plugin/wow/wow.min.js"></script>
+<script>
+    wow = new WOW();
+    wow.init();
+</script>
 </body>
 </html>
