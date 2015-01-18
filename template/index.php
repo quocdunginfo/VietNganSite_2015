@@ -14,11 +14,16 @@
  * @since Twenty Fifteen 1.0
  */
 $theme_uri = get_stylesheet_directory_uri() . '/';
-$default_string = '[not set]';
+$default_string = '';
 $default_url = '#';
 $default_img = $theme_uri . 'img/favicon.png';
 $animation_duration = '0.5s';
 $animation_delay = '0.6s';
+
+$button_color = ot_get_option('button_color', $default_string);
+$button_margin_top = ot_get_option('button_margin_top', $default_string);
+
+$logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,12 +127,18 @@ $animation_delay = '0.6s';
 </div>
 <style>
 /*General*/
-.container .qd-button {
-    width: 220px;
-}
 
 .container a {
     text-decoration: none !important;
+}
+.container .qd-row{
+    background: none; position: relative;
+}
+.container .qd-opacity{
+    opacity: <?=ot_get_option('main_content_opacity',$default_string)?>;
+}
+.container .qd-opacity-paper {
+    position: absolute; width: 100%; height: 100%;
 }
 
 .container .qd-pag {
@@ -141,7 +152,7 @@ $animation_delay = '0.6s';
 }
 
 .container {
-    color: #575757;
+    color: <?=ot_get_option('text_color', $default_string)?>;
     font-size: 16px;
 }
 
@@ -163,11 +174,11 @@ $animation_delay = '0.6s';
     display: inline-block;
     white-space: nowrap;
     vertical-align: middle;
-    margin-top: 60px;
+    margin-top: <?=$button_margin_top?>;
     min-width: 200px;
     text-align: center;
-    border: solid 2px #464646;
-    color: #464646;
+    border: solid 2px ;
+    color: <?=$button_color?>;
     width: 220px;
     height: 40px;
 }
@@ -175,7 +186,16 @@ $animation_delay = '0.6s';
 #qd-button-hoatdong {
     padding: 7px 0px 3px 0px; /*because of no-border*/
 }
-
+.container .qd-click {
+    cursor: pointer;
+    padding: 10px;
+    background-color: <?=ot_get_option('sec3_item_bg_color', $default_string)?>;
+    height: 100px;
+    position: absolute;
+    text-align: center;
+    color: <?=ot_get_option('sec3_item_text_color', $default_string)?>;
+    width: 220px;
+}
 /*iPad, PC*/
 @media (min-width: 680px) {
     /*About Viet Ngan*/
@@ -192,7 +212,7 @@ $animation_delay = '0.6s';
         height: 40px;
     }
 
-    .qd-hoatdong-wrapper {
+    .container .qd-hoatdong-wrapper {
         position: relative;
         text-align: center;
         height: 450px;
@@ -200,29 +220,14 @@ $animation_delay = '0.6s';
         margin: 0 auto;
     }
 
-    .qd-hinhthoi-wrapper {
+    .container .qd-hinhthoi-wrapper {
         position: absolute;
         margin-top: 50px;
     }
 
-    .qd-hinhthoi-wrapper > img {
+    .container .qd-hinhthoi-wrapper > img {
         margin-left: 180px;
         width: 300px;
-    }
-
-    .qd-click {
-        cursor: pointer;
-        padding: 10px;
-        background-color: #3973b1;
-        height: 100px;
-        position: absolute;
-        text-align: center;
-        color: #EEEEEE;
-        width: 220px;
-    }
-
-    .qd-click .qd-title {
-        color: white;
     }
 
     #click1 {
@@ -240,7 +245,7 @@ $animation_delay = '0.6s';
         margin-top: 290px;
     }
 
-    .qd-button {
+    .container .qd-button {
         width: 220px;
     }
 
@@ -268,7 +273,7 @@ $animation_delay = '0.6s';
 
     }
 
-    .qd-hinhthoi-wrapper {
+    .container .qd-hinhthoi-wrapper {
         text-align: center;
         position: absolute;
         margin-left: auto;
@@ -278,12 +283,12 @@ $animation_delay = '0.6s';
         margin-top: 50px;
     }
 
-    .qd-hinhthoi-wrapper > img {
+    .container .qd-hinhthoi-wrapper > img {
         width: 220px;
         height: 50%;
     }
 
-    .qd-hoatdong-wrapper {
+    .container .qd-hoatdong-wrapper {
         position: relative;
         text-align: center;
         height: 350px;
@@ -292,25 +297,16 @@ $animation_delay = '0.6s';
         margin-top: 15px;
     }
 
-    .qd-click {
-        cursor: pointer;
+    .container .qd-click {
         padding: 10px;
-        background-color: #3973b1;
         width: 200px;
         height: 85px;
-        text-align: center;
-        color: #EEEEEE;
-        position: absolute;
         left: 0;
         right: 0;
         margin-left: auto;
         margin-right: auto;
         font-size: 12px;
         margin-top: 10px;
-    }
-
-    .qd-click .qd-title {
-        color: white;
     }
 
     #click2 {
@@ -320,10 +316,6 @@ $animation_delay = '0.6s';
     #click3 {
         margin-top: 230px;
     }
-
-    .qd-button {
-        width: 200px;
-    }
 }
 </style>
 <!--END POPUP TAG -->
@@ -332,31 +324,16 @@ $animation_delay = '0.6s';
 <div class="row clearfix">
 <div class="col-md-12 column">
 
-<!-- SHOW EFFECT -->
-<script>
-//    $(document).ready(function () {
-//        tiles = $(".hideme").fadeTo(0, 0);
-//
-//        $(window).scroll(function (d, h) {
-//            tiles.each(function (i) {
-//                a = $(this).offset().top + $(this).height();
-//                b = $(window).scrollTop() + $(window).height();
-//                if (a < b) $(this).delay(50).fadeTo(300, 1);
-//            });
-//        });
-//    });
-</script>
-<!-- END SHOW EFFECT -->
-
 <!-- Part 1 Slider -->
 <div class="row clearfix">
     <div class="col-md-12 column" style="padding: 0px; ">
         <div id="qd-banner" class="col-md-12 column" style="padding: 0px; ">
             <!-- STATIC POSITION LOGO -->
             <style>
+                /*MOBILE*/
                 @media (min-width: 0px) and (max-width: 679px) {
                     #qd-logo, #qd-logo-wrapper {
-                        height: 40px;
+                        height: <?=$logo_mobile_height?>;
                     }
                 }
 
@@ -366,26 +343,16 @@ $animation_delay = '0.6s';
                     }
                 }
             </style>
-            <div id="qd-logo-wrapper"
-                 style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white; opacity: 0.9 ; " class="wow fadeIn" data-wow-duration="1s">
-                <img id="qd-logo"
-                     style="height: 100%; width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: 25px; height: 100%;"
-                     src="<?= ot_get_option('header_logo', $default_img) ?>"/>
+            <div class="wow fadeInDown" data-wow-duration="1s">
+                <div id="qd-logo-wrapper"
+                     style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white;" class="qd-opacity">
+                    <img id="qd-logo"
+                         style="height: 100%; width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: <?=$logo_mobile_height?>"
+                         src="<?= ot_get_option('header_logo', $default_img) ?>"/>
+                </div>
             </div>
-            <!-- END LOGO -->
             <style>
-                #cbp-fwslider {
-                    padding: 0;
-                }
-
-                .cbp-fwprev, .cbp-fwnext {
-                    display: none !important;
-                }
-
-            </style>
-            <!--IMG SLIDER-->
-            <style>
-                .carousel-indicators li {
+                .container .carousel-indicators li {
                     border-radius: 0px;
                     margin-right: 20px;
                     height: 30px;
@@ -394,7 +361,7 @@ $animation_delay = '0.6s';
                     opacity: 0.4;
                 }
 
-                .carousel-indicators li.active {
+                .container .carousel-indicators li.active {
                     border-radius: 0px;
                     margin-right: 20px;
                     height: 30px;
@@ -404,13 +371,13 @@ $animation_delay = '0.6s';
                 }
 
                 @media (min-width: 0px) and (max-width: 679px) {
-                    .carousel-indicators li {
+                    .container .carousel-indicators li {
                         margin-right: 20px;
                         height: 15px;
                         width: 15px;
                     }
 
-                    .carousel-indicators li.active {
+                    .container .carousel-indicators li.active {
                         margin-right: 20px;
                         height: 15px;
                         width: 15px;
@@ -468,16 +435,20 @@ $animation_delay = '0.6s';
 <!-- END Part 1 -->
 
 <!-- Part 2 Ve Viet Ngan -->
-<div class="row clearfix trongsuot-80" style="">
+<div class="row clearfix qd-row">
+    <div style="background-color: <?=ot_get_option('sec2_bg_color', $default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
+
     <div class="col-md-12 column">
         <div style="text-align: center;">
-            <div id="qd-button-about" class="trongsuot-0 qd-button wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
+            <div id="qd-button-about" class="qd-button wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
+                 data-wow-delay="<?= $animation_delay ?>">
                 <?= ot_get_option('sec2_title', $default_string) ?>
             </div>
             <div style="clear: both;"></div>
             <br/>
 
-            <div class="trongsuot-0 qd-pag wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
+            <div class="qd-pag wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
+                 data-wow-delay="<?= $animation_delay ?>"
                  style="display: inline-block;">
                 <?= ot_get_option('sec2_content', $default_string) ?>
             </div>
@@ -488,14 +459,22 @@ $animation_delay = '0.6s';
 <!-- END Part 2 -->
 <!-- Part 3 Hoat Dong -->
 <div class="row clearfix">
-    <div class="col-md-12 column trongsuot-0" style="text-align: center">
-        <div id="qd-button-hoatdong" class="qd-button trongsuot-blue-80 wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
-             style="color: ; border: solid 2px white; border: none; color: white;">
-            <?= ot_get_option('sec3_title', $default_string) ?>
+    <div class="col-md-12 column" style="text-align: center">
+        <div id="qd-button-hoatdong" class="qd-button wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
+             data-wow-delay="<?= $animation_delay ?>"
+             style="border: none; position: relative;">
+            <div style="width: 100%; height: 100%; background-color: <?=ot_get_option('sec3_button_bg_color', $default_string)?>; position: absolute" class="qd-opacity"></div>
+            <div
+                style="color: <?=ot_get_option('sec3_button_text_color', $default_string)?>; line-height: 40px; position: absolute; height: 100%; width: 100%; text-align: center">
+                <?= ot_get_option('sec3_title', $default_string) ?>
+            </div>
+
+
         </div>
         <div class="clearfix"></div>
 
-        <div class="qd-hoatdong-wrapper wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
+        <div class="qd-hoatdong-wrapper wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
+             data-wow-delay="<?= $animation_delay ?>">
             <div class="qd-hinhthoi-wrapper">
                 <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
             </div>
@@ -547,15 +526,18 @@ $animation_delay = '0.6s';
 
 
 <!-- Part 4 Hop Tac -->
-<div class="row clearfix trongsuot-80" style="margin-top: 20px;">
+<div class="row clearfix qd-row">
+    <div style="background-color: <?=ot_get_option('sec4_bg_color', $default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
     <div class="col-md-12 column" style="text-align: center">
 
-        <div id="qd-button-hoptac" class="trongsuot-0 qd-button wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
+        <div id="qd-button-hoptac" class="qd-button wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
+             data-wow-delay="<?= $animation_delay ?>">
             <?= ot_get_option('sec4_title', $default_string) ?>
         </div>
         <div style="clear: both"></div>
 
-        <div style="text-align: center" class="wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
+        <div style="text-align: center" class="wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
+             data-wow-delay="<?= $animation_delay ?>">
             <div class="qd-pag"
                 >
                 <?= ot_get_option('sec4_content', $default_string) ?>
@@ -566,18 +548,23 @@ $animation_delay = '0.6s';
 </div>
 <!-- END Part 4 -->
 <!-- Part 5 Lien He -->
-<div class="row clearfix"
-     style="background-color: silver; opacity: 0.9;">
+<div class="row clearfix qd-row">
+    <div style="background-color: <?=ot_get_option('sec5_bg_color', $default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
     <div class="col-md-12 column">
-        <div style="text-align: center;">
 
+        <div style="text-align: center;">
+            <?php
+            $lienhe_button_color = ot_get_option('sec5_button_color', $default_string);
+            ?>
             <div id="qd-button-lienhe"
-                 style="border: solid 2px #004080; color: #004080;" class="trongsuot-0 qd-button wow fadeInUp" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
+                 style="border: solid 2px <?=$lienhe_button_color?>; color: <?=$lienhe_button_color?>;" class="qd-button wow fadeInUp"
+                 data-wow-duration="<?= $animation_duration ?>" data-wow-delay="<?= $animation_delay ?>">
                 <?= ot_get_option('sec5_title', $default_string) ?>
             </div>
             <br/>
 
-            <div class="qd-pag wow fadeInDown" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>"
+            <div class="qd-pag wow fadeInDown" data-wow-duration="<?= $animation_duration ?>"
+                 data-wow-delay="<?= $animation_delay ?>"
                  style="color: #004080;">
                 <?= ot_get_option('sec5_content', $default_string) ?>
             </div>
@@ -592,7 +579,8 @@ $animation_delay = '0.6s';
                 </style>
                 <!-- <hr class="style-six" style="width: 72%"/> -->
             </div>
-            <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInDown" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>">
+            <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInDown"
+                 data-wow-duration="<?= $animation_duration ?>" data-wow-delay="<?= $animation_delay ?>">
                 <style>
                     .social-first-left {
                         margin-left: 0px;
@@ -630,10 +618,11 @@ $animation_delay = '0.6s';
 </div>
 <!-- END Part 5 -->
 <!-- Part 6 Copyright Statement -->
-<div class="row clearfix"
-     style="margin-top: 0px; background-color: <?= ot_get_option('sec6_bg_color', $default_string) ?>; opacity: 0.9;">
+<div class="row clearfix qd-row">
+    <div style="background-color: <?=ot_get_option('sec6_bg_color', $default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
     <div class="col-md-12 column">
-        <div id="qd-footer-copyright" class="wow fadeInDown" data-wow-duration="<?=$animation_duration?>" data-wow-delay="<?=$animation_delay?>" style="text-align: center; padding: 40px 0px 27px 0px;">
+        <div id="qd-footer-copyright" class="wow fadeInDown" data-wow-duration="<?= $animation_duration ?>"
+             data-wow-delay="<?= $animation_delay ?>" style="text-align: center; padding: 40px 0px 27px 0px;">
             <?= ot_get_option('footer_text', $default_string) ?>
         </div>
 
@@ -645,9 +634,9 @@ $animation_delay = '0.6s';
 </div>
 <?php //wp_footer(); ?>
 <!-- WOW -->
-<script src="<?=$theme_uri?>plugin/wow/wow.min.js"></script>
+<script src="<?= $theme_uri ?>plugin/wow/wow.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         wow = new WOW();
         wow.init();
     });
