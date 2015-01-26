@@ -24,6 +24,7 @@ $button_color = ot_get_option('button_color', $default_string);
 $button_margin_top = ot_get_option('button_margin_top', $default_string);
 
 $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
+$popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,14 +74,21 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
 <img style="z-index: 0; position: fixed; min-height: 100%; min-width: 100%"
      src="<?= ot_get_option('background', $default_img) ?>">
 <!--POPUP TAG-->
+<style>
+    .modal .modal-body{
 
+    }
+    .modal .modal-header {
+        padding: 15px 15px 10px 15px;
+    }
+</style>
 <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Message
+                    <?=$popup_modal_title?>
                 </h4>
             </div>
             <div class="modal-body">
@@ -97,7 +105,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Message
+                    <?=$popup_modal_title?>
                 </h4>
             </div>
             <div class="modal-body">
@@ -114,7 +122,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Message
+                    <?=$popup_modal_title?>
                 </h4>
             </div>
             <div class="modal-body">
@@ -356,20 +364,22 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
                 </div>
             </div>
             <style>
+
                 .container .carousel-indicators li {
                     border-radius: 0px;
                     margin-right: 20px;
                     height: 30px;
                     width: 30px;
-                    background-color: white;
+                    background: none;
+                    border: solid 2px white;
                     opacity: 0.4;
                 }
 
                 .container .carousel-indicators li.active {
                     border-radius: 0px;
                     margin-right: 20px;
-                    height: 30px;
-                    width: 30px;
+                    /*height: 30px;
+                    width: 30px;*/
                     background-color: white;
                     opacity: 0.8;
                 }
@@ -388,6 +398,13 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
                     }
                 }
             </style>
+            <script>
+                $(document).ready(function(){
+                    $('#myCarousel').carousel({
+                        interval: 1000
+                    });
+                });
+            </script>
             <!-- BANNER -->
             <div id="myCarousel" data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
                 <!-- Indicators -->
