@@ -17,8 +17,8 @@ $theme_uri = get_stylesheet_directory_uri() . '/';
 $default_string = '';
 $default_url = '#';
 $default_img = $theme_uri . 'img/favicon.png';
-$animation_duration = '0.5s';
-$animation_delay = '0.6s';
+$animation_duration = '1.5s';
+$animation_delay = '0.3s';
 
 $button_color = ot_get_option('button_color', $default_string);
 $button_margin_top = ot_get_option('button_margin_top', $default_string);
@@ -62,7 +62,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
     <!-- <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
     <script type="text/javascript" src="<?= $theme_uri ?>js/bootstrap.min-3.3.1.js"></script>
     <!--<script type="text/javascript" src="<?= $theme_uri ?>js/scripts.js"></script>-->
-    <!-- <?php //wp_head(); ?> -->
+    <?php wp_head(); ?>
     <!-- wp_head MAY CONFLICT WITH JSSLIDER because of jQuery ver -->
     <link rel="stylesheet" href="<?= $theme_uri ?>plugin/wow/animate.css">
 
@@ -195,6 +195,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
     text-align: center;
     color: <?=ot_get_option('sec3_item_text_color', $default_string)?>;
     width: 220px;
+    line-height: 27px;
 }
 /*iPad, PC*/
 @media (min-width: 680px) {
@@ -307,6 +308,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
         margin-right: auto;
         font-size: 12px;
         margin-top: 10px;
+        line-height: 22px;
     }
 
     #click2 {
@@ -343,11 +345,13 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
                     }
                 }
             </style>
-            <div class="wow fadeInDown" data-wow-duration="1s">
+
+            <!-- <div class="wow fadeInDown" data-wow-duration="1s"> -->
+            <div style="position: relative">
                 <div id="qd-logo-wrapper"
-                     style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white;" class="qd-opacity">
+                      class="qd-opacity" style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white; position: absolute">
                     <img id="qd-logo"
-                         style="height: 100%; width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: <?=$logo_mobile_height?>"
+                         style="width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: <?=$logo_mobile_height?>"
                          src="<?= ot_get_option('header_logo', $default_img) ?>"/>
                 </div>
             </div>
@@ -483,7 +487,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
                     <?= ot_get_option('sec3_item1_title', $default_string) ?>
 
                 </div>
-                <div style="margin-top: 10px;">
+                <div>
                     <?= ot_get_option('sec3_item1_desc', $default_string) ?>
                 </div>
 
@@ -493,7 +497,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item2_title', $default_string) ?>
                 </div>
-                <div style="margin-top: 10px;">
+                <div>
                     <?= ot_get_option('sec3_item2_desc', $default_string) ?>
                 </div>
 
@@ -503,7 +507,7 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
                 <div class="qd-title">
                     <?= ot_get_option('sec3_item3_title', $default_string) ?>
                 </div>
-                <div style="margin-top: 10px;">
+                <div>
                     <?= ot_get_option('sec3_item3_desc', $default_string) ?>
                 </div>
             </div>
@@ -632,11 +636,54 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
 </div>
 </div>
 </div>
-<?php //wp_footer(); ?>
+<?php wp_footer(); ?>
 <!-- WOW -->
 <script src="<?= $theme_uri ?>plugin/wow/wow.min.js"></script>
 <script>
+    $.fn.is_on_screen = function(){
+        var win = $(window);
+        var viewport = {
+            top : win.scrollTop(),
+            left : win.scrollLeft()
+        };
+        viewport.right = viewport.left + win.width();
+        viewport.bottom = viewport.top + win.height();
+
+        var bounds = this.offset();
+        bounds.right = bounds.left + this.outerWidth();
+        bounds.bottom = bounds.top + this.outerHeight();
+
+        return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+    };
+
     $(document).ready(function () {
+
+        $("#qd-logo-wrapper").click(function(){
+            //$("#qd-logo-wrapper").slideDown(1000);
+            //alert("ddd");
+
+        });
+
+
+        //on scrolling
+        $(window).scroll(function () {
+            if(!$("#qd-logo-wrapper").is_on_screen() && !$("#qd-logo-wrapper").hasClass("animated"))
+            {
+                //console.log("#qd-logo-wrapper is not on screen");
+                //change to fixed pos
+                $("#qd-logo-wrapper").css({position: 'fixed'});
+                //trigger animation
+                $('#qd-logo-wrapper').addClass('fadeInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                    //disable animation
+                    $(this).removeClass('fadeInDown');
+                });
+            }
+            else{
+                //console.log("#qd-logo-wrapper come back");
+                //$("#qd-logo-wrapper").css({position: 'relative'});
+           }
+       });
+
         wow = new WOW();
         wow.init();
     });
