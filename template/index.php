@@ -17,14 +17,16 @@ $theme_uri = get_stylesheet_directory_uri() . '/';
 $default_string = '';
 $default_url = '#';
 $default_img = $theme_uri . 'img/favicon.png';
-$animation_duration = '1.5s';
-$animation_delay = '0.3s';
+$show_animation_duration = '1.5s';
+$show_animation_delay = '0.3s';
 
 $button_color = ot_get_option('button_color', $default_string);
 $button_margin_top = ot_get_option('button_margin_top', $default_string);
 
 $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
 $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
+
+$banner_animation_duration = ot_get_option('header_banner_interval', $default_string);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -399,14 +401,14 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
                 }
             </style>
             <script>
-                $(document).ready(function(){
-                    $('#myCarousel').carousel({
-                        interval: 1000
-                    });
-                });
+//                $(document).ready(function(){
+//                    $('#myCarousel').carousel({
+//                        interval: 1000
+//                    });
+//                });
             </script>
             <!-- BANNER -->
-            <div id="myCarousel" data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
+            <div id="myCarousel" data-interval="<?=$banner_animation_duration?>" data-pause="false" data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
                 <!-- Indicators -->
 
                 <ol class="carousel-indicators">
@@ -461,15 +463,15 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
 
     <div class="col-md-12 column">
         <div style="text-align: center;">
-            <div id="qd-button-about" class="qd-button wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
-                 data-wow-delay="<?= $animation_delay ?>">
+            <div id="qd-button-about" class="qd-button wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
+                 data-wow-delay="<?= $show_animation_delay ?>">
                 <?= ot_get_option('sec2_title', $default_string) ?>
             </div>
             <div style="clear: both;"></div>
             <br/>
 
-            <div class="qd-pag wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
-                 data-wow-delay="<?= $animation_delay ?>"
+            <div class="qd-pag wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
+                 data-wow-delay="<?= $show_animation_delay ?>"
                  style="display: inline-block;">
                 <?= ot_get_option('sec2_content', $default_string) ?>
             </div>
@@ -481,8 +483,8 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
 <!-- Part 3 Hoat Dong -->
 <div class="row clearfix">
     <div class="col-md-12 column" style="text-align: center">
-        <div id="qd-button-hoatdong" class="qd-button wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
-             data-wow-delay="<?= $animation_delay ?>"
+        <div id="qd-button-hoatdong" class="qd-button wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
+             data-wow-delay="<?= $show_animation_delay ?>"
              style="border: none; position: relative;">
             <div style="width: 100%; height: 100%; background-color: <?=ot_get_option('sec3_button_bg_color', $default_string)?>; position: absolute" class="qd-opacity"></div>
             <div
@@ -494,8 +496,8 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
         </div>
         <div class="clearfix"></div>
 
-        <div class="qd-hoatdong-wrapper wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
-             data-wow-delay="<?= $animation_delay ?>">
+        <div class="qd-hoatdong-wrapper wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
+             data-wow-delay="<?= $show_animation_delay ?>">
             <div class="qd-hinhthoi-wrapper">
                 <img src="<?= $theme_uri ?>img/vn_hinhthoi.png"/>
             </div>
@@ -551,14 +553,14 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
     <div style="background-color: <?=ot_get_option('sec4_bg_color', $default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
     <div class="col-md-12 column" style="text-align: center">
 
-        <div id="qd-button-hoptac" class="qd-button wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
-             data-wow-delay="<?= $animation_delay ?>">
+        <div id="qd-button-hoptac" class="qd-button wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
+             data-wow-delay="<?= $show_animation_delay ?>">
             <?= ot_get_option('sec4_title', $default_string) ?>
         </div>
         <div style="clear: both"></div>
 
-        <div style="text-align: center" class="wow fadeInUp" data-wow-duration="<?= $animation_duration ?>"
-             data-wow-delay="<?= $animation_delay ?>">
+        <div style="text-align: center" class="wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
+             data-wow-delay="<?= $show_animation_delay ?>">
             <div class="qd-pag"
                 >
                 <?= ot_get_option('sec4_content', $default_string) ?>
@@ -578,14 +580,14 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
             $lienhe_button_color = ot_get_option('sec5_button_color', $default_string);
             ?>
             <div id="qd-button-lienhe"
-                 style="border: solid 2px <?=$lienhe_button_color?>; color: <?=$lienhe_button_color?>;" class="qd-button wow fadeInUp"
-                 data-wow-duration="<?= $animation_duration ?>" data-wow-delay="<?= $animation_delay ?>">
+                 style="border: solid 2px <?=$lienhe_button_color?>; color: <?=$lienhe_button_color?>;" class="qd-button wow fadeInDown"
+                 data-wow-duration="<?= $show_animation_duration ?>" data-wow-delay="<?= $show_animation_delay ?>">
                 <?= ot_get_option('sec5_title', $default_string) ?>
             </div>
             <br/>
 
-            <div class="qd-pag wow fadeInDown" data-wow-duration="<?= $animation_duration ?>"
-                 data-wow-delay="<?= $animation_delay ?>"
+            <div class="qd-pag wow fadeInDown" data-wow-duration="<?= $show_animation_duration ?>"
+                 data-wow-delay="<?= $show_animation_delay ?>"
                  style="color: #004080;">
                 <?= ot_get_option('sec5_content', $default_string) ?>
             </div>
@@ -600,8 +602,8 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
                 </style>
                 <!-- <hr class="style-six" style="width: 72%"/> -->
             </div>
-            <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInDown"
-                 data-wow-duration="<?= $animation_duration ?>" data-wow-delay="<?= $animation_delay ?>">
+            <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInRight"
+                 data-wow-duration="<?= $show_animation_duration ?>" data-wow-delay="<?= $show_animation_delay ?>">
                 <style>
                     .social-first-left {
                         margin-left: 0px;
@@ -642,8 +644,8 @@ $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
 <div class="row clearfix qd-row">
     <div style="background-color: <?=ot_get_option('sec6_bg_color', $default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
     <div class="col-md-12 column">
-        <div id="qd-footer-copyright" class="wow fadeInDown" data-wow-duration="<?= $animation_duration ?>"
-             data-wow-delay="<?= $animation_delay ?>" style="text-align: center; padding: 40px 0px 27px 0px;">
+        <div id="qd-footer-copyright" class="wow fadeInLeft" data-wow-duration="<?= $show_animation_duration ?>"
+             data-wow-delay="<?= $show_animation_delay ?>" style="text-align: center; padding: 40px 0px 27px 0px;">
             <?= ot_get_option('footer_text', $default_string) ?>
         </div>
 
