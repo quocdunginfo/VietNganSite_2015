@@ -17,7 +17,7 @@ $theme_uri = get_stylesheet_directory_uri() . '/';
 $default_string = '';
 $default_url = '#';
 $default_img = $theme_uri . 'img/favicon.png';
-$show_animation_duration = '1.5s';
+$show_animation_duration = '0.9s';
 $show_animation_delay = '0.3s';
 
 $button_color = ot_get_option('button_color', $default_string);
@@ -27,6 +27,14 @@ $logo_mobile_height = ot_get_option('logo_mobile_height', $default_string);
 $popup_modal_title = ot_get_option('sec3_item_popup_title', $default_string);
 
 $banner_animation_duration = ot_get_option('header_banner_interval', $default_string);
+$banner_array = array();
+for ($i = 1; $i <= 4; $i++) {
+    $ety67_tmp = ot_get_option('header_banner_' . $i, '');
+    if ($ety67_tmp != '')
+    {
+        array_push($banner_array, $ety67_tmp);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -411,6 +419,10 @@ $banner_animation_duration = ot_get_option('header_banner_interval', $default_st
             <div id="myCarousel" data-interval="<?=$banner_animation_duration?>" data-pause="false" data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
                 <!-- Indicators -->
 
+                <?php
+                if(count($banner_array)>1):
+                ?>
+                ?>
                 <ol class="carousel-indicators">
                     <?php
                     for ($i = 1; $i <= 4; $i++):
@@ -423,6 +435,10 @@ $banner_animation_duration = ot_get_option('header_banner_interval', $default_st
                     endfor;
                     ?>
                 </ol>
+                <?php
+                endif;
+
+                ?>
                 <div class="carousel-inner">
                     <?php
                     for ($i = 1; $i <= 4; $i++):
