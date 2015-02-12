@@ -21,8 +21,8 @@
  * {@link https://codex.wordpress.org/Plugin_API}
  *
  * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @subpackage vns2015
+ * @since vns2015 v1.0
  */
  
  require_once('plugin/dashboard/preview.php');

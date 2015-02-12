@@ -1,0 +1,7 @@
+//VietNganSite_2015 install script
+0. Pure WP package
+1. OptionTree
+-backup and restore via OptionTree Port base64 encoded
+(do not modify database=>cause lost value)
+2. Theme
+3. Ext plugin if needed
