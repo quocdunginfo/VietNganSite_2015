@@ -364,7 +364,7 @@ for ($i = 1; $i <= 4; $i++) {
             <!-- <div class="wow fadeInDown" data-wow-duration="1s"> -->
             <div style="position: relative">
                 <div id="qd-logo-wrapper"
-                      class="qd-opacity" style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: white; position: absolute">
+                      style="z-index: 10; padding: 0;width: 100%; text-align: center; background-color: rgba(255, 255, 255, 0.7); position: absolute">
                     <img id="qd-logo"
                          style="width: auto; max-height: <?= ot_get_option('header_logo_height', $default_string) ?>; min-height: <?=$logo_mobile_height?>"
                          src="<?= ot_get_option('header_logo', $default_img) ?>"/>
