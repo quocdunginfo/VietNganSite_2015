@@ -26,3 +26,5 @@
  */
  
  require_once('plugin/dashboard/preview.php');
+
+require_once('_helpers/index.php');

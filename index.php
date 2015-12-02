@@ -10,6 +10,7 @@
  * @subpackage vns2015
  * @since vns2015 v1.0
  */
+
 $theme_uri = get_stylesheet_directory_uri() . '/';
 $default_string = '';
 $default_url = '#';
@@ -722,3 +723,4 @@ for ($i = 1; $i <= 4; $i++) {
 </script>
 </body>
 </html>
+
