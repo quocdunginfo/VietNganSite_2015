@@ -14,6 +14,21 @@ class QdT_Layout_Root
 
     public $theme_root_setup = null;
 
+    public $temp_p;
+    public $theme_uri;
+    public $default_string;
+    public $default_img;
+    public $show_animation_duration;
+    public $show_animation_delay;
+    public $button_color;
+    public $button_margin_top;
+    public $logo_mobile_height;
+    public $popup_modal_title;
+    public $banner_animation_duration;
+    public $banner_array;
+
+
+
     function __construct()
     {
         $this->uri = $_SERVER['REQUEST_URI'];
@@ -21,6 +36,31 @@ class QdT_Layout_Root
         $this->theme_root_setup = QdTRootSetup::GET();
         //END Partner
         $this->loadScript();
+
+        //Old version
+        $this->temp_p = get_template_directory_uri() . '/';
+        $this->theme_uri = get_stylesheet_directory_uri() . '/';
+        $this->default_string = '';
+        $this->default_url = '#';
+        $this->default_img = $this->theme_uri . 'img/favicon.png';
+        $this->show_animation_duration = '0.9s';
+        $this->show_animation_delay = '0.3s';
+
+        $this->button_color = ot_get_option('button_color', $this->default_string);
+        $this->button_margin_top = ot_get_option('button_margin_top', $this->default_string);
+
+        $this->logo_mobile_height = ot_get_option('logo_mobile_height', $this->default_string);
+        $this->popup_modal_title = ot_get_option('sec3_item_popup_title', $this->default_string);
+
+        $this->banner_animation_duration = ot_get_option('header_banner_interval', $this->default_string);
+        $this->banner_array = array();
+        for ($i = 1; $i <= 4; $i++) {
+            $ety67_tmp = ot_get_option('header_banner_' . $i, '');
+            if ($ety67_tmp != '') {
+                array_push($this->banner_array, $ety67_tmp);
+            }
+        }
+        //END Old Version
     }
 
     public function setPageInfoToClient()
@@ -94,25 +134,16 @@ class QdT_Layout_Root
 
     public function getPageTitle()
     {
-        $obj = str_replace("{prefix}", 'Mua bán, ký gửi đồ hiệu', $this->theme_root_setup->seo_title_struct);
-        return $obj;
+        return ot_get_option('site_title', $this->page->default_string);
     }
 
     public function getPageDescription()
     {
-        $obj = str_replace("{prefix}", '', $this->theme_root_setup->seo_description_struct);
-        if (trim($obj) == '') {
-            return get_bloginfo('description');
-        }
-        return $obj;
+        return ot_get_option('seo_meta_desc', $this->page->default_string);
     }
 
     public function getPageKeywords()
     {
-        $obj = str_replace("{prefix}", '', $this->theme_root_setup->seo_keywords_struct);
-        if (trim($obj) == '') {
-            return '';
-        }
-        return $obj;
+        return ot_get_option('seo_meta_keywords', $this->page->default_string);
     }
 }
