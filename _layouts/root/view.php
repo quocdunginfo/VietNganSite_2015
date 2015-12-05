@@ -42,9 +42,421 @@ class QdT_Layout_Root_View
         return $this->page->getPageKeywords();
     }
 
+    protected function getStaticMenuBarPart()
+    {
+        ?>
+        <div class="col-md-12 column" style="padding: 0px; ">
+
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+                 style="background-color: rgba(255, 255, 255, 0.701961)">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="./index.html"
+                           style="text-align: center;margin-left:20px; padding: 0px 0px;">
+                            <img
+                                style="width: auto;text-align: center; max-height: 50px; min-height: 50px"
+                                src="<?= ot_get_option('header_logo', $this->page->default_img) ?>">
+                        </a>
+
+                    </div>
+                    <a class="navbar-brand hidden-xs" href="./index.html"
+                       style="position: absolute;width: 100%;left: 0;text-align: center;margin: auto;  padding: 0px 0px;">
+                        <img style="max-height: 60px; min-height: 60px"
+                             src="<?= ot_get_option('header_logo', $this->page->default_img) ?>">
+                    </a>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+                         style="margin-left:0px;">
+                        <ul class="nav navbar-nav marginmobile" style="margin-left:0px;">
+                            <li style="height:60px;padding-top:5px;color:#555;">
+                                <a href="./product.html" style="color:#555;">NHÀ BÁN</a>
+                            </li>
+                            <li style="height:60px;padding-top:5px;">
+                                <a href="./product.html" style="color:#555;">NHÀ CHO THUÊ</a>
+                            </li>
+
+                        </ul>
+                        <div class=" navbar-right col-sm-2 col-md-2" role="search"
+                             style="padding-top:15px;padding-bottom:10px;">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="q"
+                                       style="height:30px;">
+
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" style="height:30px;">
+                                        <i class="glyphicon glyphicon-search" style="color:#999;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+    <?php
+    }
+
+    protected function getBannerPart()
+    {
+        ?>
+        <style>
+
+            .container .carousel-indicators li {
+                border-radius: 0px;
+                margin-right: 20px;
+                height: 30px;
+                width: 30px;
+                background: none;
+                border: solid 2px white;
+                opacity: 0.4;
+            }
+
+            .container .carousel-indicators li.active {
+                border-radius: 0px;
+                margin-right: 20px;
+                /*height: 30px;
+                width: 30px;*/
+                background-color: white;
+                opacity: 0.8;
+            }
+
+
+        </style>
+        <div class="col-md-12 column" style="padding: 0px; ">
+            <!-- BANNER -->
+            <div id="myCarousel" data-interval="<?= $this->page->banner_animation_duration ?>" data-pause="false"
+                 data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
+                <!-- Indicators -->
+
+                <?php
+                if (count($this->page->banner_array) > 1):
+                    ?>
+                    <ol class="carousel-indicators">
+                        <?php
+                        for ($i = 1; $i <= 4; $i++):
+                            if (ot_get_option('header_banner_' . $i, '') != ''):
+                                ?>
+                                <li data-target="#myCarousel" data-slide-to="<?= $i - 1 ?>"
+                                    class="<?php if ($i == 1) echo 'active'; ?>"></li>
+                            <?php
+                            endif;
+                        endfor;
+                        ?>
+                    </ol>
+                <?php
+                endif;
+
+                ?>
+                <div class="carousel-inner">
+                    <?php
+                    for ($i = 1; $i <= 4; $i++):
+                        if (ot_get_option('header_banner_' . $i, '') != ''):
+                            ?>
+                            <div class="item <?php if ($i == 1) echo 'active'; ?>">
+                                <img src="<?= ot_get_option('header_banner_' . $i, $this->page->default_img) ?>"
+                                     style="width:100%"
+                                     alt="Slide <?= $i ?>">
+                            </div>
+                        <?php
+                        endif;
+                    endfor;
+                    ?>
+                </div>
+
+                <a style="display: none" class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span
+                        class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a style="display: none" class="right carousel-control" href="#myCarousel"
+                   data-slide="next"><span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+
+
+            </div>
+        </div>
+    <?php
+    }
+
     public function render()
     {
+        $this->getHeaderPart();
+        ?>
 
+        <!-- Part 1 Slider -->
+        <div class="row clearfix">
+            <?= $this->getStaticMenuBarPart() ?>
+            <?= $this->getBannerPart() ?>
+        </div>
+        <!-- END Part 1 -->
+
+        <?=$this->getContentPart()?>
+
+        <?= $this->getLienHePart() ?>
+        <?= $this->getCopyRightPart() ?>
+        <?php
+        $this->getFooterPart();
+    }
+
+    protected function getVeVietNganPart()
+    {
+        ?>
+        <!-- Part 2 Ve Viet Ngan -->
+        <div class="row clearfix qd-row">
+            <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
+
+            <div class="col-md-12 column">
+                <div style="text-align: center;">
+                    <div id="qd-button-about" class="qd-button wow fadeInUp"
+                         data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                         data-wow-delay="<?= $this->page->show_animation_delay ?>">
+                        <?= ot_get_option('sec2_title', $this->page->default_string) ?>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <br/>
+
+                    <div class="qd-pag wow fadeInUp" data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                         data-wow-delay="<?= $this->page->show_animation_delay ?>"
+                         style="display: inline-block;">
+                        <?= ot_get_option('sec2_content', $this->page->default_string) ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- END Part 2 -->
+    <?php
+    }
+
+    protected function getHoatDongPart()
+    {
+        ?>
+        <!-- Part 3 Hoat Dong -->
+        <div class="row clearfix">
+            <div class="col-md-12 column" style="text-align: center">
+                <div id="qd-button-hoatdong" class="qd-button wow fadeInUp"
+                     data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                     data-wow-delay="<?= $this->page->show_animation_delay ?>"
+                     style="border: none; position: relative;">
+                    <div
+                        style="width: 100%; height: 100%; background-color: <?= ot_get_option('sec3_button_bg_color', $this->page->default_string) ?>; position: absolute"
+                        class="qd-opacity"></div>
+                    <div
+                        style="color: <?= ot_get_option('sec3_button_text_color', $this->page->default_string) ?>; line-height: 40px; position: absolute; height: 100%; width: 100%; text-align: center">
+                        <?= ot_get_option('sec3_title', $this->page->default_string) ?>
+                    </div>
+
+
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="qd-hoatdong-wrapper wow fadeInUp"
+                     data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                     data-wow-delay="<?= $this->page->show_animation_delay ?>">
+                    <div class="qd-hinhthoi-wrapper">
+                        <img src="<?= $this->page->theme_uri ?>img/vn_hinhthoi.png"/>
+                    </div>
+                    <div class="qd-click" id="click1">
+                        <div class="qd-title">
+                            <?= ot_get_option('sec3_item1_title', $this->page->default_string) ?>
+
+                        </div>
+                        <div>
+                            <?= ot_get_option('sec3_item1_desc', $this->page->default_string) ?>
+                        </div>
+
+                    </div>
+
+                    <div class="qd-click" id="click2">
+                        <div class="qd-title">
+                            <?= ot_get_option('sec3_item2_title', $this->page->default_string) ?>
+                        </div>
+                        <div>
+                            <?= ot_get_option('sec3_item2_desc', $this->page->default_string) ?>
+                        </div>
+
+                    </div>
+
+                    <div class="qd-click" id="click3">
+                        <div class="qd-title">
+                            <?= ot_get_option('sec3_item3_title', $this->page->default_string) ?>
+                        </div>
+                        <div>
+                            <?= ot_get_option('sec3_item3_desc', $this->page->default_string) ?>
+                        </div>
+                    </div>
+                    <script>
+                        $("#click1").click(function () {
+                            $('#modal-container-1').modal('show');
+                        });
+                        $("#click2").click(function () {
+                            $('#modal-container-2').modal('show');
+                        });
+                        $("#click3").click(function () {
+                            $('#modal-container-3').modal('show');
+                        });
+                    </script>
+                </div>
+
+            </div>
+        </div>
+        <!-- END Part 3 -->
+    <?php
+    }
+
+    protected function getHopTacPart()
+    {
+        ?>
+        <!-- Part 4 Hop Tac -->
+        <div class="row clearfix qd-row">
+            <div style="background-color: <?= ot_get_option('sec4_bg_color', $this->page->default_string) ?>;"
+                 class="qd-opacity qd-opacity-paper"></div>
+            <div class="col-md-12 column" style="text-align: center">
+
+                <div id="qd-button-hoptac" class="qd-button wow fadeInUp"
+                     data-wow-duration="<?= $show_animation_duration ?>"
+                     data-wow-delay="<?= $this->page->show_animation_delay ?>">
+                    <?= ot_get_option('sec4_title', $this->page->default_string) ?>
+                </div>
+                <div style="clear: both"></div>
+
+                <div style="text-align: center" class="wow fadeInUp"
+                     data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                     data-wow-delay="<?= $this->page->show_animation_delay ?>">
+                    <div class="qd-pag"
+                        >
+                        <?= ot_get_option('sec4_content', $this->page->default_string) ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- END Part 4 -->
+    <?php
+    }
+
+    protected function getLienHePart()
+    {
+        ?>
+        <!-- Part 5 Lien He -->
+        <div class="row clearfix qd-row">
+            <div style="background-color: <?= ot_get_option('sec5_bg_color', $this->page->default_string) ?>;"
+                 class="qd-opacity qd-opacity-paper"></div>
+            <div class="col-md-12 column">
+
+                <div style="text-align: center;">
+                    <?php
+                    $lienhe_button_color = ot_get_option('sec5_button_color', $this->page->default_string);
+                    ?>
+                    <div id="qd-button-lienhe"
+                         style="border: solid 2px <?= $lienhe_button_color ?>; color: <?= $lienhe_button_color ?>;"
+                         class="qd-button wow fadeInDown"
+                         data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                         data-wow-delay="<?= $this->page->show_animation_delay ?>">
+                        <?= ot_get_option('sec5_title', $this->page->default_string) ?>
+                    </div>
+                    <br/>
+
+                    <div class="qd-pag wow fadeInDown" data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                         data-wow-delay="<?= $this->page->show_animation_delay ?>"
+                         style="color: #004080;">
+                        <?= ot_get_option('sec5_content', $this->page->default_string) ?>
+                    </div>
+                    <div>
+                        <style>
+                            hr.style-six {
+                                border: 0;
+                                height: 0;
+                                border-top: 1px solid rgba(255, 255, 255, 0.8);
+                                /*border-bottom: 1px solid rgba(255, 255, 255, 0.3);*/
+                            }
+                        </style>
+                        <!-- <hr class="style-six" style="width: 72%"/> -->
+                    </div>
+                    <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInRight"
+                         data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                         data-wow-delay="<?= $this->page->show_animation_delay ?>">
+                        <style>
+                            .social-first-left {
+                                margin-left: 0px;
+                                border-radius: 50% 50% 50% 50%;
+                                width: 35px;
+                                height: 35px;
+                            }
+
+                            .social {
+                                margin-left: 30px;
+                                border-radius: 50% 50% 50% 50%;
+                                width: 35px;
+                                height: 35px;
+                            }
+
+                            .social:hover, .social-first-left:hover {
+                                opacity: 0.4;
+                            }
+                        </style>
+                        <a href="<?= ot_get_option('sec6_icon1_url', $this->page->default_url) ?>"/>
+                        <img class="social-first-left"
+                             src="<?= ot_get_option('sec6_icon1_img', $this->page->default_img) ?>"/>
+                        </a>
+                        <a href="<?= ot_get_option('sec6_icon2_url', $this->page->default_url) ?>"/>
+                        <img class="social" src="<?= ot_get_option('sec6_icon2_img', $this->page->default_img) ?>"/>
+                        </a>
+                        <a href="<?= ot_get_option('sec6_icon3_url', $this->page->default_url) ?>"/>
+                        <img class="social" src="<?= ot_get_option('sec6_icon3_img', $this->page->default_img) ?>"/>
+                        </a>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <!-- END Part 5 -->
+    <?php
+    }
+
+    protected function getCopyRightPart()
+    {
+        ?>
+        <!-- Part 6 Copyright Statement -->
+        <div class="row clearfix qd-row">
+            <div style="background-color: <?= ot_get_option('sec6_bg_color', $this->page->default_string) ?>;"
+                 class="qd-opacity qd-opacity-paper"></div>
+            <div class="col-md-12 column">
+                <div id="qd-footer-copyright" class="wow fadeInLeft"
+                     data-wow-duration="<?= $this->page->show_animation_duration ?>"
+                     data-wow-delay="<?= $this->page->show_animation_delay ?>"
+                     style="text-align: center; padding: 40px 0px 27px 0px;">
+                    <?= ot_get_option('footer_text', $this->page->default_string) ?>
+                </div>
+
+            </div>
+        </div>
+        <!-- END Part 6 -->
+    <?php
+    }
+
+    private function getDefaultMaterial()
+    {
+        ?>
+
+    <?php
+    }
+
+    /*
+     * Menu, Top Line, Logo, Search Box
+     * */
+    protected function getHeaderPart()
+    {
         ?>
         <!DOCTYPE html>
         <!-- saved from url=(0019)http://vietngan.vn/ -->
@@ -72,7 +484,7 @@ class QdT_Layout_Root_View
 
             <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
             <!--[if lt IE 9]>
-            <script src="<?=$this->page->theme_uri?>js/html5shiv.js"></script>
+            <script src="<?= $this->page->theme_uri ?>js/html5shiv.js"></script>
             <![endif]-->
 
             <!-- Fav and touch icons -->
@@ -104,29 +516,29 @@ class QdT_Layout_Root_View
                 padding: 15px 15px 10px 15px;
             }
         </style>
-        <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            <?=$this->page->popup_modal_title?></h4>
+                        <h4 class="modal-title" id="myModalLabel1">
+                            <?= $this->page->popup_modal_title ?></h4>
                     </div>
                     <div class="modal-body">
-                        <?= ot_get_option('sec3_item2_full_content', $default_string) ?>
+                        <?= ot_get_option('sec3_item2_full_content', $this->page->default_string) ?>
                     </div>
                 </div>
 
             </div>
 
         </div>
-        <div class="modal fade" id="modal-container-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-container-2" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="background-color: ;">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            <?=$this->page->popup_modal_title?>
+                        <h4 class="modal-title" id="myModalLabel2">
+                            <?= $this->page->popup_modal_title ?>
                         </h4>
                     </div>
                     <div class="modal-body">
@@ -137,13 +549,13 @@ class QdT_Layout_Root_View
             </div>
 
         </div>
-        <div class="modal fade" id="modal-container-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-container-3" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            <?=$this->page->popup_modal_title?>
+                        <h4 class="modal-title" id="myModalLabel3">
+                            <?= $this->page->popup_modal_title ?>
                         </h4>
                     </div>
                     <div class="modal-body">
@@ -164,7 +576,7 @@ class QdT_Layout_Root_View
                 background: none; position: relative;
             }
             .container .qd-opacity{
-                opacity: <?=ot_get_option('main_content_opacity',$this->page->default_string)?>;
+                opacity: <?= ot_get_option('main_content_opacity', $this->page->default_string) ?>;
             }
             .container .qd-opacity-paper {
                 position: absolute; width: 100%; height: 100%;
@@ -181,20 +593,20 @@ class QdT_Layout_Root_View
             }
 
             .container {
-                color: <?=ot_get_option('text_color', $this->page->default_string)?>;
+                color: <?= ot_get_option('text_color', $this->page->default_string) ?>;
                 font-size: 16px;
             }
 
             .container .trongsuot-0 {
-                background: url(<?=$this->page->theme_uri?>img/0_percent_white_bg.png);
+                background: url(<?= $this->page->theme_uri ?>img/0_percent_white_bg.png);
             }
 
             .container .trongsuot-80 {
-                background: url(<?=$this->page->theme_uri?>img/80_percent_white_bg.png);
+                background: url(<?= $this->page->theme_uri ?>img/80_percent_white_bg.png);
             }
 
             .container .trongsuot-blue-80 {
-                background: url(<?=$this->page->theme_uri?>img/80_percent_blue_bg.png);
+                background: url(<?= $this->page->theme_uri ?>img/80_percent_blue_bg.png);
             }
 
             .container .qd-button {
@@ -203,11 +615,11 @@ class QdT_Layout_Root_View
                 display: inline-block;
                 white-space: nowrap;
                 vertical-align: middle;
-                margin-top: <?=$this->page->button_margin_top?>;
+                margin-top: <?= $this->page->button_margin_top ?>;
                 min-width: 200px;
                 text-align: center;
                 border: solid 2px ;
-                color: <?=$this->page->button_color?>;
+                color: <?= $this->page->button_color ?>;
                 width: 220px;
                 height: 40px;
             }
@@ -218,11 +630,11 @@ class QdT_Layout_Root_View
             .container .qd-click {
                 cursor: pointer;
                 padding: 10px;
-                background-color: <?=ot_get_option('sec3_item_bg_color', $this->page->default_string)?>;
+                background-color: <?= ot_get_option('sec3_item_bg_color', $this->page->default_string) ?>;
                 height: 100px;
                 position: absolute;
                 text-align: center;
-                color: <?=ot_get_option('sec3_item_text_color', $this->page->default_string)?>;
+                color: <?= ot_get_option('sec3_item_text_color', $this->page->default_string) ?>;
                 width: 220px;
                 line-height: 27px;
             }
@@ -355,336 +767,20 @@ class QdT_Layout_Root_View
             <div class="row clearfix">
                 <div class="col-md-12 column">
 
-                    <!-- Part 1 Slider -->
-                    <div class="row clearfix">
-                        <div class="col-md-12 column" style="padding: 0px; ">
+    <?php
+    }
 
-                            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
-                                 style="background-color: rgba(255, 255, 255, 0.701961)">
-                                <div class="container-fluid">
-                                    <!-- Brand and toggle get grouped for better mobile display -->
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                data-target="#bs-example-navbar-collapse-1">
-                                            <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                        <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="./index.html"
-                                           style="text-align: center;margin-left:20px; padding: 0px 0px;">
-                                            <img
-                                                style="width: auto;text-align: center; max-height: 50px; min-height: 50px"
-                                                src="<?= ot_get_option('header_logo', $this->page->default_img) ?>">
-                                        </a>
+    private function getSearchBoxPart($id = 1, $istop = true)
+    {
+        ?>
 
-                                    </div>
-                                    <a class="navbar-brand hidden-xs" href="./index.html"
-                                       style="position: absolute;width: 100%;left: 0;text-align: center;margin: auto;  padding: 0px 0px;">
-                                        <img style="max-height: 60px; min-height: 60px" src="<?= ot_get_option('header_logo', $this->page->default_img) ?>">
-                                    </a>
-                                    <!-- Collect the nav links, forms, and other content for toggling -->
-                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
-                                         style="margin-left:0px;">
-                                        <ul class="nav navbar-nav marginmobile" style="margin-left:0px;">
-                                            <li style="height:60px;padding-top:5px;color:#555;">
-                                                <a href="./product.html" style="color:#555;">NHÀ BÁN</a>
-                                            </li>
-                                            <li style="height:60px;padding-top:5px;">
-                                                <a href="./product.html" style="color:#555;">NHÀ CHO THUÊ</a>
-                                            </li>
+    <?php
+    }
 
-                                        </ul>
-                                        <div class=" navbar-right col-sm-2 col-md-2" role="search"
-                                             style="padding-top:15px;padding-bottom:10px;">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search" name="q"
-                                                       style="height:30px;">
-
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-default" type="submit" style="height:30px;">
-                                                        <i class="glyphicon glyphicon-search" style="color:#999;"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.navbar-collapse -->
-                                </div>
-
-                        </div>
-                        <style>
-
-                            .container .carousel-indicators li {
-                                border-radius: 0px;
-                                margin-right: 20px;
-                                height: 30px;
-                                width: 30px;
-                                background: none;
-                                border: solid 2px white;
-                                opacity: 0.4;
-                            }
-
-                            .container .carousel-indicators li.active {
-                                border-radius: 0px;
-                                margin-right: 20px;
-                                /*height: 30px;
-                                width: 30px;*/
-                                background-color: white;
-                                opacity: 0.8;
-                            }
-
-
-                        </style>
-                        <div class="col-md-12 column" style="padding: 0px; ">
-                            <!-- BANNER -->
-                            <div id="myCarousel" data-interval="<?=$this->page->banner_animation_duration?>" data-pause="false" data-ride="carousel" class="carousel slide wow fadeIn" data-wow-duration="1s">
-                                <!-- Indicators -->
-
-                                <?php
-                                if(count($this->page->banner_array)>1):
-                                    ?>
-                                    <ol class="carousel-indicators">
-                                        <?php
-                                        for ($i = 1; $i <= 4; $i++):
-                                            if (ot_get_option('header_banner_' . $i, '') != ''):
-                                                ?>
-                                                <li data-target="#myCarousel" data-slide-to="<?= $i - 1 ?>"
-                                                    class="<?php if ($i == 1) echo 'active'; ?>"></li>
-                                            <?php
-                                            endif;
-                                        endfor;
-                                        ?>
-                                    </ol>
-                                <?php
-                                endif;
-
-                                ?>
-                                <div class="carousel-inner">
-                                    <?php
-                                    for ($i = 1; $i <= 4; $i++):
-                                        if (ot_get_option('header_banner_' . $i, '') != ''):
-                                            ?>
-                                            <div class="item <?php if ($i == 1) echo 'active'; ?>">
-                                                <img src="<?= ot_get_option('header_banner_' . $i, $this->page->default_img) ?>" style="width:100%"
-                                                     alt="Slide <?= $i ?>">
-                                            </div>
-                                        <?php
-                                        endif;
-                                    endfor;
-                                    ?>
-                                </div>
-
-                                <a style="display: none" class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span
-                        class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a style="display: none" class="right carousel-control" href="#myCarousel"
-                                   data-slide="next"><span
-                                        class="glyphicon glyphicon-chevron-right"></span></a>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Part 1 -->
-
-                    <!-- Part 2 Ve Viet Ngan -->
-                    <div class="row clearfix qd-row">
-                        <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
-
-                        <div class="col-md-12 column">
-                            <div style="text-align: center;">
-                                <div id="qd-button-about" class="qd-button wow fadeInUp" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                     data-wow-delay="<?= $this->page->show_animation_delay ?>">
-                                    <?= ot_get_option('sec2_title', $this->page->default_string) ?>
-                                </div>
-                                <div style="clear: both;"></div>
-                                <br/>
-
-                                <div class="qd-pag wow fadeInUp" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                     data-wow-delay="<?= $thi->page->show_animation_delay ?>"
-                                     style="display: inline-block;">
-                                    <?= ot_get_option('sec2_content', $this->page->default_string) ?>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END Part 2 -->
-                    <!-- Part 3 Hoat Dong -->
-                    <div class="row clearfix">
-                        <div class="col-md-12 column" style="text-align: center">
-                            <div id="qd-button-hoatdong" class="qd-button wow fadeInUp" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                 data-wow-delay="<?= $this->page->show_animation_delay ?>"
-                                 style="border: none; position: relative;">
-                                <div style="width: 100%; height: 100%; background-color: <?=ot_get_option('sec3_button_bg_color', $this->page->default_string)?>; position: absolute" class="qd-opacity"></div>
-                                <div
-                                    style="color: <?=ot_get_option('sec3_button_text_color', $this->page->default_string)?>; line-height: 40px; position: absolute; height: 100%; width: 100%; text-align: center">
-                                    <?= ot_get_option('sec3_title', $this->page->default_string) ?>
-                                </div>
-
-
-                            </div>
-                            <div class="clearfix"></div>
-
-                            <div class="qd-hoatdong-wrapper wow fadeInUp" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                 data-wow-delay="<?= $this->page->show_animation_delay ?>">
-                                <div class="qd-hinhthoi-wrapper">
-                                    <img src="<?= $this->page->theme_uri ?>img/vn_hinhthoi.png"/>
-                                </div>
-                                <div class="qd-click" id="click1">
-                                    <div class="qd-title">
-                                        <?= ot_get_option('sec3_item1_title', $this->page->default_string) ?>
-
-                                    </div>
-                                    <div>
-                                        <?= ot_get_option('sec3_item1_desc', $this->page->default_string) ?>
-                                    </div>
-
-                                </div>
-
-                                <div class="qd-click" id="click2">
-                                    <div class="qd-title">
-                                        <?= ot_get_option('sec3_item2_title', $this->page->default_string) ?>
-                                    </div>
-                                    <div>
-                                        <?= ot_get_option('sec3_item2_desc', $this->page->default_string) ?>
-                                    </div>
-
-                                </div>
-
-                                <div class="qd-click" id="click3">
-                                    <div class="qd-title">
-                                        <?= ot_get_option('sec3_item3_title', $this->page->default_string) ?>
-                                    </div>
-                                    <div>
-                                        <?= ot_get_option('sec3_item3_desc', $this->page->default_string) ?>
-                                    </div>
-                                </div>
-                                <script>
-                                    $("#click1").click(function () {
-                                        $('#modal-container-1').modal('show');
-                                    });
-                                    $("#click2").click(function () {
-                                        $('#modal-container-2').modal('show');
-                                    });
-                                    $("#click3").click(function () {
-                                        $('#modal-container-3').modal('show');
-                                    });
-                                </script>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END Part 3 -->
-
-
-                    <!-- Part 4 Hop Tac -->
-                    <div class="row clearfix qd-row">
-                        <div style="background-color: <?=ot_get_option('sec4_bg_color', $this->page->default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
-                        <div class="col-md-12 column" style="text-align: center">
-
-                            <div id="qd-button-hoptac" class="qd-button wow fadeInUp" data-wow-duration="<?= $show_animation_duration ?>"
-                                 data-wow-delay="<?= $this->page->show_animation_delay ?>">
-                                <?= ot_get_option('sec4_title', $this->page->default_string) ?>
-                            </div>
-                            <div style="clear: both"></div>
-
-                            <div style="text-align: center" class="wow fadeInUp" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                 data-wow-delay="<?= $this->page->show_animation_delay ?>">
-                                <div class="qd-pag"
-                                    >
-                                    <?= ot_get_option('sec4_content', $this->page->default_string) ?>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END Part 4 -->
-                    <!-- Part 5 Lien He -->
-                    <div class="row clearfix qd-row">
-                        <div style="background-color: <?=ot_get_option('sec5_bg_color', $this->page->default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
-                        <div class="col-md-12 column">
-
-                            <div style="text-align: center;">
-                                <?php
-                                $lienhe_button_color = ot_get_option('sec5_button_color', $this->page->default_string);
-                                ?>
-                                <div id="qd-button-lienhe"
-                                     style="border: solid 2px <?=$lienhe_button_color?>; color: <?=$lienhe_button_color?>;" class="qd-button wow fadeInDown"
-                                     data-wow-duration="<?= $this->page->show_animation_duration ?>" data-wow-delay="<?= $this->page->show_animation_delay ?>">
-                                    <?= ot_get_option('sec5_title', $this->page->default_string) ?>
-                                </div>
-                                <br/>
-
-                                <div class="qd-pag wow fadeInDown" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                     data-wow-delay="<?= $this->page->show_animation_delay ?>"
-                                     style="color: #004080;">
-                                    <?= ot_get_option('sec5_content', $this->page->default_string) ?>
-                                </div>
-                                <div>
-                                    <style>
-                                        hr.style-six {
-                                            border: 0;
-                                            height: 0;
-                                            border-top: 1px solid rgba(255, 255, 255, 0.8);
-                                            /*border-bottom: 1px solid rgba(255, 255, 255, 0.3);*/
-                                        }
-                                    </style>
-                                    <!-- <hr class="style-six" style="width: 72%"/> -->
-                                </div>
-                                <div style="margin-top: 30px; height: 70px; vertical-align: middle;" class="wow fadeInRight"
-                                     data-wow-duration="<?= $this->page->show_animation_duration ?>" data-wow-delay="<?= $this->page->show_animation_delay ?>">
-                                    <style>
-                                        .social-first-left {
-                                            margin-left: 0px;
-                                            border-radius: 50% 50% 50% 50%;
-                                            width: 35px;
-                                            height: 35px;
-                                        }
-
-                                        .social {
-                                            margin-left: 30px;
-                                            border-radius: 50% 50% 50% 50%;
-                                            width: 35px;
-                                            height: 35px;
-                                        }
-
-                                        .social:hover, .social-first-left:hover {
-                                            opacity: 0.4;
-                                        }
-                                    </style>
-                                    <a href="<?= ot_get_option('sec6_icon1_url', $this->page->default_url) ?>"/>
-                                    <img class="social-first-left" src="<?= ot_get_option('sec6_icon1_img', $this->page->default_img) ?>"/>
-                                    </a>
-                                    <a href="<?= ot_get_option('sec6_icon2_url', $this->page->default_url) ?>"/>
-                                    <img class="social" src="<?= ot_get_option('sec6_icon2_img', $this->page->default_img) ?>"/>
-                                    </a>
-                                    <a href="<?= ot_get_option('sec6_icon3_url', $this->page->default_url) ?>"/>
-                                    <img class="social" src="<?= ot_get_option('sec6_icon3_img', $this->page->default_img) ?>"/>
-                                    </a>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END Part 5 -->
-                    <!-- Part 6 Copyright Statement -->
-                    <div class="row clearfix qd-row">
-                        <div style="background-color: <?=ot_get_option('sec6_bg_color', $this->page->default_string)?>;" class="qd-opacity qd-opacity-paper"></div>
-                        <div class="col-md-12 column">
-                            <div id="qd-footer-copyright" class="wow fadeInLeft" data-wow-duration="<?= $this->page->show_animation_duration ?>"
-                                 data-wow-delay="<?= $this->page->show_animation_delay ?>" style="text-align: center; padding: 40px 0px 27px 0px;">
-                                <?= ot_get_option('footer_text', $this->page->default_string) ?>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END Part 6 -->
-                </div>
+    protected function getFooterPart()
+    {
+        ?>
+            </div>
             </div>
         </div>
         <?php wp_footer(); ?>
@@ -742,40 +838,6 @@ class QdT_Layout_Root_View
 
         </body>
         </html>
-
-    <?php
-    }
-
-    private function getDefaultMaterial()
-    {
-        ?>
-
-    <?php
-    }
-
-    /*
-     * Menu, Top Line, Logo, Search Box
-     * */
-    protected function getHeaderPart()
-    {
-        //$logo_url = ot_get_option('header_logo', 'img/logo.jpg');
-        ?>
-
-    <?php
-    }
-
-    private function getSearchBoxPart($id = 1, $istop = true)
-    {
-        ?>
-
-    <?php
-    }
-
-    protected function getFooterPart()
-    {
-
-        ?>
-
     <?php
     }
 }

@@ -13,4 +13,14 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
     public function __construct($page){
         parent::__construct($page);
     }
+
+    protected function getContentPart()
+    {
+        ?>
+        <?= $this->getVeVietNganPart() ?>
+        <?= $this->getHoatDongPart() ?>
+        <?= $this->getHopTacPart() ?>
+        <?php
+    }
+
 }
