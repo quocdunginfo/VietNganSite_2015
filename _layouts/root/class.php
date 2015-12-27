@@ -61,6 +61,54 @@ class QdT_Layout_Root
             }
         }
         //END Old Version
+        /*
+        $response = wp_remote_get('http://localhost/vnc_2015/console/?query=get_note');
+        if( is_array($response) ) {
+            $body = $response['body']; // use the content
+            $t = json_decode($body);
+            $objs = $t->result;
+            foreach($objs as $item){
+                $tmp = new QdNote();
+                $this->copyObj($item, $tmp);
+                var_dump($tmp);
+            }
+            exit(0);
+        }
+        */
+    }
+    private function copyObj($source, $destination){
+        //assign value
+        $c = $destination->getCalledClassName();
+        foreach ($c::getFieldsConfig() as $key => $value) {
+
+            //Boolean
+            if (in_array($c::getDataType($key), array('Boolean'))) {
+                $destination->$key = 0;
+                if (isset($source->$key)) {
+                    if ($source->$key === 'true' || $source->$key === '1' || $source->$key === 1 || $source->$key === true) {
+                        $destination->$key = 1;
+                    }
+                }
+                continue;
+            }
+            if ($c::getDataType($key) == 'Date') {
+                if (isset($source->$key)) {
+                    $tmp = DateTime::createFromFormat(get_option('date_format', 'j/m/Y'), $source->$key);//DateTime::createFromFormat('d/M/Y', "01/01/2015");//$_POST['data'][$key]);
+                    if ($tmp == false) {
+                        $destination->$key = null;
+                    } else {
+                        $destination->$key = $tmp;
+                    }
+                }
+                continue;
+            }
+
+            if (isset($source->$key)) {
+                $destination->$key = $source->$key;
+                $destination->$key = str_replace('\\"', '"', $destination->$key);//quocdunginfo, need to find other approach
+                $destination->$key = str_replace("\\'", "'", $destination->$key);//quocdunginfo, need to find other approach
+            }
+        }
     }
 
     public function setPageInfoToClient()

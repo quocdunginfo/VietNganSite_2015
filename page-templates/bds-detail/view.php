@@ -10,8 +10,11 @@ QdT_Library::loadLayoutView('root');
 
 class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
 {
+    private $slider = array();
     public function __construct($page){
         parent::__construct($page);
+
+        $this->slider = $this->page->bds->getImages()->SETRANGE('active', true)->SETORDERBY('order')->GETLIST();
     }
 
     protected function getContentPart()
@@ -25,7 +28,9 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
             <div class="col-md-12 column" style="text-align: center">
                 <div class="col-md-12 column" style="text-align: left">
                     <div class="page-header" style="border-bottom: 0px;margin-bottom:5px;">
-                        <h3>NHÀ ĐẸP NHẤT VIỆT NAM</h3>
+                        <h3>
+                            <?=$this->page->bds->name?>
+                        </h3>
                     </div>
                 </div>
                 <div style="clear: both;"></div>
@@ -40,16 +45,18 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
 
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item active">
-                                            <img class="img-responsive" src="https://placehold.it/900x600"
-                                                 alt="...">
+                                        <?php
+                                        $count=0;
+                                        foreach($this->slider as $item):
+                                            $active = $count==0?'active':'';
+                                            ?>
+                                        <div class="item <?=$active?>">
+                                            <img class="img-responsive" src="<?=$item->path?>">
 
                                         </div>
-                                        <div class="item">
-                                            <img class="img-responsive" src="https://placehold.it/900x600"
-                                                 alt="...">
-
-                                        </div>
+                                        <?php
+                                        $count++;
+                                        endforeach; ?>
 
                                     </div>
                                     <a class="left carousel-control" href="#carousel-example-generic" role="button"
@@ -141,15 +148,10 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
 
                     <div class="row col-md-12 column" style="margin-top:30px;text-align:left;">
                         <div class="col-md-8 column" style="padding-left: 0px">
-                            <h3 style="margin-left:12px;">MÔ TẢ SẢN PHẨM</h3>
+                            <h3 style="margin-left:12px;">MÔ TẢ</h3>
                             <hr class="long-grey-thin-line" style="margin-top: 10px; margin-bottom: 10px">
                             <div class="col-md-12 column" style="font-size:13px;">
-                                <p>
-                                    Includes over 250 glyphs in font format from the Glyphicon Halflings set.
-                                    Glyphicons Halflings are normally not available for free, but their creator has
-                                    made them available for Bootstrap free of cost. As a thank you, we only ask that
-                                    you include a link back to Glyphicons whenever possible.
-                                </p>
+                                <?=$this->page->bds->description?>
                             </div>
                         </div>
                         <div class="col-md-4 column" style="padding-left: 0px">

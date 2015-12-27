@@ -10,10 +10,17 @@ QdT_Library::loadLayoutClass('root');
 
 class QdT_PageT_BDSDetail extends QdT_Layout_Root
 {
+    public $bds = null;
     function __construct()
     {
         parent::__construct();
 
+        $bds_id = get_query_var('id', 0);
+        $this->bds = QdProduct::GET($bds_id);
+        if($this->bds==null){
+            static::redirectPageError404();
+            return;
+        }
     }
 
     public static function getPageName()
