@@ -19,6 +19,7 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
 
     protected function getContentPart()
     {
+        $obj = $this->page->bds;
         ?>
         <div class="row clearfix qd-row">
             <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
@@ -29,7 +30,7 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
                 <div class="col-md-12 column" style="text-align: left">
                     <div class="page-header" style="border-bottom: 0px;margin-bottom:5px;">
                         <h3>
-                            <?=$this->page->bds->name?>
+                            <?=$obj->name?>
                         </h3>
                     </div>
                 </div>
@@ -123,14 +124,25 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
                                 </style>
                                 <ul style="margin-left: 15px; margin-bottom: 0px; font-size:13px;">
                                     <!-- Alway active for 1st element -->
-                                    <li>Model: MPD003</li>
-                                    <li>Xuất xứ: USA22222</li>
-                                    <li>Công suất: 19 kW</li>
-                                    <li>Động cơ: 4 kỳ</li>
-                                    <li>Trọng lượng: 29 KG</li>
-                                    <li style="color: #404040; font-weight: bold; font-size: 16px">Giá: 1.350.000
-                                        VND
-                                    </li>
+                                    <?php if(false && $obj->code != ''):?>
+                                        <li>Mã: <?=$obj->code?></li>
+                                    <?php endif; ?>
+
+                                    <?php if($obj->dtdat > 0):?>
+                                        <li>Diện tích đất: <?=$obj->dtdat?></li>
+                                    <?php endif; ?>
+                                    <?php if($obj->dtxaydung > 0):?>
+                                        <li>Diện tích xây dựng: <?=$obj->dtxaydung?></li>
+                                    <?php endif; ?>
+
+                                    <?php if($obj->dtsudung > 0):?>
+                                        <li>Diện tích sử dụng: <?=$obj->dtsudung?></li>
+                                    <?php endif; ?>
+
+                                    <?php if($obj->phaply!=''):?>
+                                        <li>Pháp lý: <?=$obj->phaply?></li>
+                                    <?php endif; ?>
+
                                 </ul>
                             </div>
 
@@ -151,21 +163,38 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
                             <h3 style="margin-left:12px;">MÔ TẢ</h3>
                             <hr class="long-grey-thin-line" style="margin-top: 10px; margin-bottom: 10px">
                             <div class="col-md-12 column" style="font-size:13px;">
-                                <?=$this->page->bds->description?>
+                                <?=$obj->description?>
+                                <?php if($obj->ggm_embeded != ''): ?>
+                                <style type="text/css">
+                                    .googlemap {
+                                        position: relative;
+                                        padding-bottom: 50%; /* 4:3 ratio*/
+                                        height: 0;
+                                        overflow: hidden;
+                                    }
+
+                                    .googlemap iframe {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100% !important;
+                                        height: 100% !important;
+                                    }
+                                </style>
+                                    <div class="googlemap">
+                                        <?=$obj->ggm_embeded;?>
+                                    </div>
+                                <?php
+                                endif; ?>
                             </div>
                         </div>
                         <div class="col-md-4 column" style="padding-left: 0px">
                             <h3 style="margin-left:19px;">THÔNG TIN LIÊN HỆ</h3>
                             <hr class="long-grey-thin-line" style="margin-top: 10px; margin-bottom: 10px">
 
-                            <p>
-                            <ul class="list-unstyled" style="text-align:left;margin-left:19px;font-size:13px;">
-                                <li>Địa chỉ:</li>
-                                <li>Di động:</li>
-                                <li>Email:</li>
-                                <li>Facebook:</li>
-                            </ul>
-                            </p>
+                            <div class="list-unstyled" style="text-align:left;margin-left:19px;font-size:13px;">
+                                <?=$obj->thongtinlh?>
+                            </div>
 
                         </div>
                     </div>
