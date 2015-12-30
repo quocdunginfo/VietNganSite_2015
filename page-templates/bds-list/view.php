@@ -10,8 +10,27 @@ QdT_Library::loadLayoutView('root');
 
 class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 {
+    private $list_obj = array();
+    private $locations = array();
     public function __construct($page){
         parent::__construct($page);
+
+        $loc_id = get_query_var('loc-id', false);
+        if($loc_id!==false && QdProductCat::GET($loc_id) == null){
+            $this->page->redirectPageError404();
+            return;
+        }
+
+        $tmp = new QdProduct();
+        $tmp->SETRANGE('active', true);
+        if($loc_id != ''){
+            $tmp->SETRANGE('product_cat_id', $loc_id);
+        }
+        $this->list_obj = $tmp->GETLIST();
+
+        $tmp = new QdProductCat();
+        $tmp->SETRANGE('active', true);
+        $this->locations = $tmp->GETLIST();
     }
 
     protected function getContentPart()
@@ -32,52 +51,21 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                 <div style="clear: both;"></div>
                 <div class="col-md-12">
                     <div class="col-md-9" style="padding:0px;margin:0px;">
+                        <?php foreach($this->list_obj as $item): ?>
                         <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
                              style="margin-top:15px;margin:0px;padding-left:0px;">
                             <div class="thumbnail" style="margin-bottom:5px;">
-                                <img src="http://placehold.it/320x213" alt="">
+                                <img src="<?=$item->getMediaURL('avatar', 'medium')?>" alt="">
                             </div>
                             <div class="caption" style="font-size:13px;">
-                                <a href="./product_detail.html">First Product</a>
+                                <a href="<?=$item->getPermalink()?>">
+                                    <?=$item->name?>
+                                </a>
 
-                                <p>5.000.000 VND</p>
+                                <p><?=number_format($item->price, 0, '.', ',')?> VND</p>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
-                             style="margin-top:15px;margin:0px;padding-left:0px;">
-                            <div class="thumbnail" style="margin-bottom:5px;">
-                                <img src="http://placehold.it/320x213" alt="">
-                            </div>
-                            <div class="caption" style="font-size:13px;">
-                                <a href="./product_detail.html">First Product</a>
-
-                                <p>5.000.000 VND</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
-                             style="margin-top:15px;margin:0px;padding-left:0px;">
-                            <div class="thumbnail" style="margin-bottom:5px;">
-                                <img src="http://placehold.it/320x213" alt="">
-                            </div>
-                            <div class="caption" style="font-size:13px;">
-                                <a href="./product_detail.html">First Product</a>
-
-                                <p>5.000.000 VND</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
-                             style="margin-top:15px;margin:0px;padding-left:0px;">
-                            <div class="thumbnail" style="margin-bottom:5px;">
-                                <img src="http://placehold.it/320x213" alt="">
-                            </div>
-                            <div class="caption" style="font-size:13px;">
-                                <a href="./product_detail.html">First Product</a>
-
-                                <p>5.000.000 VND</p>
-                            </div>
-                        </div>
-
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="col-md-3 column ow fadeInUp animated"
@@ -97,9 +85,13 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                              style="overflow: hidden;overflow-y: scroll;list-style: none;padding-left: 0px;text-align:left;">
                             <h5 style="font-size:13px">TÌM THEO QUẬN tỉnh</h5>
                             <ul class="list-unstyled" style="font-size:13px;">
-                                <li><a href=#>Hà Nội</a></li>
-                                <li><a href=#>Tp.HCM</a></li>
-                                <li><a href=#>Đà Nẵng</a></li>
+                                <?php foreach($this->locations as $item): ?>
+                                    <li>
+                                        <a href="<?=$item->getPermalink()?>">
+                                            <?=$item->name?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
