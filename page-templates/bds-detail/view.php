@@ -124,6 +124,10 @@ class QdT_PageT_BDSDetail_View extends QdT_Layout_Root_View
                                 </style>
                                 <ul style="margin-left: 15px; margin-bottom: 0px; font-size:13px;">
                                     <!-- Alway active for 1st element -->
+                                    <?php if($obj->price > 0):?>
+                                        <li>Giá: <?=QdT_Library::num_as_group_vn($obj->price, ' VND')?></li>
+                                    <?php endif; ?>
+
                                     <?php if(false && $obj->code != ''):?>
                                         <li>Mã: <?=$obj->code?></li>
                                     <?php endif; ?>

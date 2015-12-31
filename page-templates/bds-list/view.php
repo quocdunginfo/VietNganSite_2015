@@ -13,24 +13,46 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
     private $list_obj = array();
     private $struct_lv_1 = false;
     private $locations = array();
-    public function __construct($page){
+    private $price_from = false;
+    private $price_to = false;
+    private $key_word = false;
+    public function __construct($page)
+    {
         parent::__construct($page);
 
         $loc_id = get_query_var('loc-id', false);
         $this->struct_lv_1 = get_query_var('struct-id', false);
+        $this->price_from = get_query_var('price-from', false);
+        $this->price_to = get_query_var('price-to', false);
+        $this->key_word= get_query_var('key-word', false);
 
-        if($loc_id!==false && QdProductCat::GET($loc_id) == null){
+        if ($loc_id !== false && QdProductCat::GET($loc_id) == null) {
             $this->page->redirectPageError404();
             return;
         }
 
         $tmp = new QdProduct();
         $tmp->SETRANGE('active', true);
-        if($loc_id != ''){
+        if ($loc_id != '') {
             $tmp->SETRANGE('product_cat_id', $loc_id);
         }
-        if($this->struct_lv_1 !== false){
+        if ($this->struct_lv_1 !== false) {
             $tmp->SETRANGE('struct_lv_1', $this->struct_lv_1);
+        }
+        if ($this->price_from !== false) {
+            $tmp->SETRANGE('price', $this->price_from, QdProduct::$OP_GREATER_THAN_OR_EQUAL);
+        }
+        if ($this->price_to !== false && $this->price_to > 0) {
+            $tmp->SETRANGE('price', $this->price_to, QdProduct::$OP_LESS_THAN_OR_EQUAL);
+        }
+        if($this->key_word !== false){
+            $tmp->REMOVEFILTER();
+            $tmp->SETRANGE('name', $this->key_word, QdProduct::$OP_CONTAINS);
+            $tmp->SETRANGE('description', $this->key_word, QdProduct::$OP_CONTAINS);
+            $tmp->SETRANGE('id', $this->key_word, QdProduct::$OP_CONTAINS);
+            $tmp->SETRANGE('phaply', $this->key_word, QdProduct::$OP_CONTAINS);
+            $tmp->SETRANGE('thongtinlh', $this->key_word, QdProduct::$OP_CONTAINS);
+            $tmp->SETFILTERRELATION('OR');
         }
         $this->list_obj = $tmp->GETLIST();
 
@@ -41,7 +63,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 
     protected function getContentPart()
     {
-        $grid_title = $this->struct_lv_1==QdProductCat::$LV1_BAN?'NHÀ BÁN - CƠ HỘI ĐẦU TƯ':'NHÀ CHO THUÊ - CƠ HỘI ĐẦU TƯ';
+        $grid_title = $this->struct_lv_1 == QdProductCat::$LV1_BAN ? 'NHÀ BÁN - CƠ HỘI ĐẦU TƯ' : 'NHÀ CHO THUÊ - CƠ HỘI ĐẦU TƯ';
         ?>
         <div class="row clearfix qd-row">
             <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
@@ -51,27 +73,27 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
             <div class="col-md-12 column" style="text-align: center">
                 <div class="col-md-12 column" style="text-align: left">
                     <div class="page-header" style="border-bottom: 0px;margin-bottom:5px;">
-                        <h3><?=$grid_title?></h3>
+                        <h3><?= $grid_title ?></h3>
                     </div>
                 </div>
 
                 <div style="clear: both;"></div>
                 <div class="col-md-12">
                     <div class="col-md-9" style="padding:0px;margin:0px;">
-                        <?php foreach($this->list_obj as $item): ?>
-                        <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
-                             style="margin-top:15px;margin:0px;padding-left:0px;">
-                            <div class="thumbnail" style="margin-bottom:5px;">
-                                <img src="<?=$item->getMediaURL('avatar', 'medium')?>" alt="">
-                            </div>
-                            <div class="caption" style="font-size:13px;">
-                                <a href="<?=$item->getPermalink()?>">
-                                    <?=$item->name?>
-                                </a>
+                        <?php foreach ($this->list_obj as $item): ?>
+                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
+                                 style="margin-top:15px;margin:0px;padding-left:0px;">
+                                <div class="thumbnail" style="margin-bottom:5px;">
+                                    <img src="<?= $item->getMediaURL('avatar', 'medium') ?>" alt="">
+                                </div>
+                                <div class="caption" style="font-size:13px;">
+                                    <a href="<?= $item->getPermalink() ?>">
+                                        <?= $item->name ?>
+                                    </a>
 
-                                <p><?=number_format($item->price, 0, '.', ',')?> VND</p>
+                                    <p><?=QdT_Library::num_as_group_vn($item->price, ' VND')?></p>
+                                </div>
                             </div>
-                        </div>
                         <?php endforeach; ?>
                     </div>
 
@@ -81,9 +103,35 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                              style="overflow: hidden;overflow-y: scroll;list-style: none;padding-left: 0px;text-align:left;">
                             <h5 style="margin-top:5px;font-size:13px">TÌM THEO MỨC GIÁ</h5>
                             <ul class="list-unstyled" style="font-size:13px;">
-                                <li><a href=#>0 - 10.000.000 VND</a></li>
-                                <li><a href=#>10.000.000 - 20.000.000 VND</a></li>
-                                <li><a href=#>20.000.000 - 50.000.000 VND</a></li>
+                                <?php
+                                $pr = array(
+                                    array(
+                                        0, 10000000
+                                    ),
+                                    array(
+                                        10000000, 20000000
+                                    ),
+                                    array(
+                                        20000000, 50000000
+                                    ),
+                                    array(
+                                        50000000, -1
+                                    ),
+                                );
+                                $cp = $this->page->bds_list_uri;
+                                foreach ($pr as $item):
+                                    $cp = add_query_arg(array('price-from' => $item[0], 'price-to' => $item[1]), $cp);
+                                    $caption = '';
+                                    if($item[1]==-1){
+                                        $caption = 'Trên '.QdT_Library::num_as_group_vn($item[0], ' VND');
+                                    }else if($item[0]==0){
+                                        $caption = 'Dưới '.QdT_Library::num_as_group_vn($item[1], ' VND');
+                                    }else{
+                                        $caption = QdT_Library::num_as_group_vn($item[0]) . ' - '. QdT_Library::num_as_group_vn($item[1], ' VND');
+                                    }
+                                    ?>
+                                    <li><a href="<?=$cp?>"><?=$caption?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <br/><br/>
@@ -92,17 +140,17 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                              style="overflow: hidden;overflow-y: scroll;list-style: none;padding-left: 0px;text-align:left;">
                             <h5 style="font-size:13px">TÌM THEO QUẬN tỉnh</h5>
                             <ul class="list-unstyled" style="font-size:13px;">
-                                <?php foreach($this->locations as $item):
+                                <?php foreach ($this->locations as $item):
                                     $link = '';
-                                    if(false && $this->struct_lv_1!=false){
+                                    if (false && $this->struct_lv_1 != false) {
                                         $link = $item->getPermalink(array('struct-id' => $this->struct_lv_1));
-                                    }else{
+                                    } else {
                                         $link = $item->getPermalink();
                                     }
                                     ?>
                                     <li>
-                                        <a href="<?=$link?>">
-                                            <?=$item->name?>
+                                        <a href="<?= $link ?>">
+                                            <?= $item->name ?>
                                         </a>
                                     </li>
                                 <?php endforeach; ?>
@@ -121,7 +169,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 
 
         </div>
-        <?php
+    <?php
     }
 
     protected function getBannerPart()

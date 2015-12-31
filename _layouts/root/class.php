@@ -26,7 +26,7 @@ class QdT_Layout_Root
     public $popup_modal_title;
     public $banner_animation_duration;
     public $banner_array;
-
+    public $bds_list_uri;
 
 
     function __construct()
@@ -75,6 +75,7 @@ class QdT_Layout_Root
             exit(0);
         }
         */
+        $this->bds_list_uri = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/bds-list.php'));
     }
     private function copyObj($source, $destination){
         //assign value

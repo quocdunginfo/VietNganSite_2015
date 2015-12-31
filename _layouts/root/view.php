@@ -49,7 +49,7 @@ class QdT_Layout_Root_View
         <div class="col-md-12 column" style="padding: 0px; ">
 
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
-                 style="background-color: rgba(255, 255, 255, 0.701961)">
+                 style="background-color: rgba(255, 255, 255, 0.9)">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -88,14 +88,16 @@ class QdT_Layout_Root_View
                         <div class=" navbar-right col-sm-2 col-md-2" role="search"
                              style="padding-top:15px;padding-bottom:10px;">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="q"
+                                <form id="search-form" method="get" action="<?=$this->page->bds_list_uri?>">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm" name="key-word"
                                        style="height:30px;">
-
+                                </form>
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" style="height:30px;">
+                                    <button class="btn btn-default" type="submit" style="height:30px;" onclick="jQuery('#search-form').submit();">
                                         <i class="glyphicon glyphicon-search" style="color:#999;"></i>
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
