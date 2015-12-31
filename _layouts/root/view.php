@@ -44,6 +44,7 @@ class QdT_Layout_Root_View
 
     protected function getStaticMenuBarPart()
     {
+        $home_page = get_home_url();
         ?>
         <div class="col-md-12 column" style="padding: 0px; ">
 
@@ -59,7 +60,7 @@ class QdT_Layout_Root_View
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="./index.html"
+                        <a class="navbar-brand hidden-md hidden-sm hidden-lg" href="<?=$home_page?>"
                            style="text-align: center;margin-left:20px; padding: 0px 0px;">
                             <img
                                 style="width: auto;text-align: center; max-height: 50px; min-height: 50px"
@@ -67,7 +68,7 @@ class QdT_Layout_Root_View
                         </a>
 
                     </div>
-                    <a class="navbar-brand hidden-xs" href="./index.html"
+                    <a class="navbar-brand hidden-xs" href="<?=$home_page?>"
                        style="position: absolute;width: 100%;left: 0;text-align: center;margin: auto;  padding: 0px 0px;">
                         <img style="max-height: 60px; min-height: 60px"
                              src="<?= ot_get_option('header_logo', $this->page->default_img) ?>">
@@ -77,10 +78,10 @@ class QdT_Layout_Root_View
                          style="margin-left:0px;">
                         <ul class="nav navbar-nav marginmobile" style="margin-left:0px;">
                             <li style="height:60px;padding-top:5px;color:#555;">
-                                <a href="./product.html" style="color:#555;">NHÀ BÁN</a>
+                                <a href="<?=QdProductCat::getPermalinkSearchPageStruct(QdProductCat::$LV1_BAN)?>" style="color:#555;">NHÀ BÁN</a>
                             </li>
                             <li style="height:60px;padding-top:5px;">
-                                <a href="./product.html" style="color:#555;">NHÀ CHO THUÊ</a>
+                                <a href="<?=QdProductCat::getPermalinkSearchPageStruct(QdProductCat::$LV1_CHOTHUE)?>" style="color:#555;">NHÀ CHO THUÊ</a>
                             </li>
 
                         </ul>

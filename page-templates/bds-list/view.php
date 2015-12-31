@@ -11,11 +11,14 @@ QdT_Library::loadLayoutView('root');
 class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 {
     private $list_obj = array();
+    private $struct_lv_1 = false;
     private $locations = array();
     public function __construct($page){
         parent::__construct($page);
 
         $loc_id = get_query_var('loc-id', false);
+        $this->struct_lv_1 = get_query_var('struct-id', false);
+
         if($loc_id!==false && QdProductCat::GET($loc_id) == null){
             $this->page->redirectPageError404();
             return;
@@ -26,6 +29,9 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
         if($loc_id != ''){
             $tmp->SETRANGE('product_cat_id', $loc_id);
         }
+        if($this->struct_lv_1 !== false){
+            $tmp->SETRANGE('struct_lv_1', $this->struct_lv_1);
+        }
         $this->list_obj = $tmp->GETLIST();
 
         $tmp = new QdProductCat();
@@ -35,6 +41,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 
     protected function getContentPart()
     {
+        $grid_title = $this->struct_lv_1==QdProductCat::$LV1_BAN?'NHÀ BÁN - CƠ HỘI ĐẦU TƯ':'NHÀ CHO THUÊ - CƠ HỘI ĐẦU TƯ';
         ?>
         <div class="row clearfix qd-row">
             <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
@@ -44,7 +51,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
             <div class="col-md-12 column" style="text-align: center">
                 <div class="col-md-12 column" style="text-align: left">
                     <div class="page-header" style="border-bottom: 0px;margin-bottom:5px;">
-                        <h3>NHÀ BÁN - CƠ HỘI ĐẦU TƯ</h3>
+                        <h3><?=$grid_title?></h3>
                     </div>
                 </div>
 
@@ -85,9 +92,16 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                              style="overflow: hidden;overflow-y: scroll;list-style: none;padding-left: 0px;text-align:left;">
                             <h5 style="font-size:13px">TÌM THEO QUẬN tỉnh</h5>
                             <ul class="list-unstyled" style="font-size:13px;">
-                                <?php foreach($this->locations as $item): ?>
+                                <?php foreach($this->locations as $item):
+                                    $link = '';
+                                    if(false && $this->struct_lv_1!=false){
+                                        $link = $item->getPermalink(array('struct-id' => $this->struct_lv_1));
+                                    }else{
+                                        $link = $item->getPermalink();
+                                    }
+                                    ?>
                                     <li>
-                                        <a href="<?=$item->getPermalink()?>">
+                                        <a href="<?=$link?>">
                                             <?=$item->name?>
                                         </a>
                                     </li>
