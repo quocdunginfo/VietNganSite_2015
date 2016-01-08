@@ -21,6 +21,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
         parent::__construct($page);
 
         $loc_id = get_query_var('loc-id', false);
+        $loc_slug_id = get_query_var('loc-slug-id', false);
         $this->struct_lv_1 = get_query_var('struct-id', false);
         $this->price_from = get_query_var('price-from', false);
         $this->price_to = get_query_var('price-to', false);
@@ -29,6 +30,17 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
         if ($loc_id !== false && QdProductCat::GET($loc_id) == null) {
             $this->page->redirectPageError404();
             return;
+        }
+        $pcat = new QdProductCat();
+        if ($loc_slug_id !== false) {
+            $pcat->SETRANGE('slug_id', $loc_slug_id);
+            $tmp = $pcat->FINDFIRST();
+            if($tmp==null) {
+                $this->page->redirectPageError404();
+                return;
+            }else{
+                $loc_id = $tmp->id;
+            }
         }
 
         $tmp = new QdProduct();
@@ -142,10 +154,8 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                             <ul class="list-unstyled" style="font-size:13px;">
                                 <?php foreach ($this->locations as $item):
                                     $link = '';
-                                    if (false && $this->struct_lv_1 != false) {
+                                    if ($this->struct_lv_1 != false) {
                                         $link = $item->getPermalink(array('struct-id' => $this->struct_lv_1));
-                                    } else {
-                                        $link = $item->getPermalink();
                                     }
                                     ?>
                                     <li>
