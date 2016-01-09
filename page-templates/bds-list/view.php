@@ -16,12 +16,14 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
     private $price_from = false;
     private $price_to = false;
     private $key_word = false;
+    private $location = false;
+    private $loc_slug_id = false;
     public function __construct($page)
     {
         parent::__construct($page);
 
         $loc_id = get_query_var('loc-id', false);
-        $loc_slug_id = get_query_var('loc-slug-id', false);
+        $this->loc_slug_id = get_query_var('loc-slug-id', false);
         $this->struct_lv_1 = get_query_var('struct-id', false);
         $this->price_from = get_query_var('price-from', false);
         $this->price_to = get_query_var('price-to', false);
@@ -32,14 +34,15 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
             return;
         }
         $pcat = new QdProductCat();
-        if ($loc_slug_id !== false) {
-            $pcat->SETRANGE('slug_id', $loc_slug_id);
+        if ($this->loc_slug_id !== false) {
+            $pcat->SETRANGE('slug_id', $this->loc_slug_id);
             $tmp = $pcat->FINDFIRST();
             if($tmp==null) {
                 $this->page->redirectPageError404();
                 return;
             }else{
                 $loc_id = $tmp->id;
+                $this->location = $tmp;
             }
         }
 
@@ -75,7 +78,21 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 
     protected function getContentPart()
     {
-        $grid_title = $this->struct_lv_1 == QdProductCat::$LV1_BAN ? 'NHÀ BÁN - CƠ HỘI ĐẦU TƯ' : 'NHÀ CHO THUÊ - CƠ HỘI ĐẦU TƯ';
+        $grid_title = '';
+        if($this->struct_lv_1!==false){
+            $grid_title = $this->struct_lv_1 == QdProductCat::$LV1_BAN ? 'NHÀ BÁN - CƠ HỘI ĐẦU TƯ' : 'NHÀ CHO THUÊ - CƠ HỘI ĐẦU TƯ';
+        }else{
+            if($this->location!==false){
+                $grid_title = 'KHU VỰC - '.mb_strtoupper($this->location->name);
+            }
+            if($this->price_from!==false || $this->price_to!==false){
+                $grid_title = 'THEO MỨC GIÁ';
+            }
+            if($this->key_word!==false){
+                $grid_title = 'THEO TỪ KHÓA';
+            }
+        }
+
         ?>
         <div class="row clearfix qd-row">
             <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
@@ -130,17 +147,35 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                                         50000000, -1
                                     ),
                                 );
-                                $cp = $this->page->bds_list_uri;
+                                //$cp = $this->page->bds_list_uri;
+
                                 foreach ($pr as $item):
-                                    $cp = add_query_arg(array('price-from' => $item[0], 'price-to' => $item[1]), $cp);
+                                    $cp = '';
+                                    //if($this->struct_lv_1!==false){
+                                    //    $cp = add_query_arg(array('struct-id' => $this->struct_lv_1), $cp);
+                                    //}
+                                    //$cp = add_query_arg(array('price-from' => $item[0], 'price-to' => $item[1]), $cp);
+
+                                    if($this->struct_lv_1!==false){
+                                        if($this->struct_lv_1==QdProductCat::$LV1_BAN){
+                                            $cp .='nha-ban';
+                                        }else if($this->struct_lv_1==QdProductCat::$LV1_CHOTHUE){
+                                            $cp .='nha-cho-thue';
+                                        }
+                                    }
+
                                     $caption = '';
                                     if($item[1]==-1){
                                         $caption = 'Trên '.QdT_Library::num_as_group_vn($item[0], ' VND');
+                                        $cp .= '/gia-tu/'.$item[0].'.html';
                                     }else if($item[0]==0){
                                         $caption = 'Dưới '.QdT_Library::num_as_group_vn($item[1], ' VND');
+                                        $cp .= '/gia-tu/'.$item[0].'/den/'.$item[1].'.html';
                                     }else{
                                         $caption = QdT_Library::num_as_group_vn($item[0]) . ' - '. QdT_Library::num_as_group_vn($item[1], ' VND');
+                                        $cp .= '/gia-tu/'.$item[0].'/den/'.$item[1].'.html';
                                     }
+                                    $cp = get_site_url(null, $cp);
                                     ?>
                                     <li><a href="<?=$cp?>"><?=$caption?></a></li>
                                 <?php endforeach; ?>
@@ -156,6 +191,9 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                                     $link = '';
                                     if ($this->struct_lv_1 != false) {
                                         $link = $item->getPermalink(array('struct-id' => $this->struct_lv_1));
+                                    }else{
+                                        $link = 'khu-vuc/'.$item->slug_id.'.html';
+                                        $link = get_site_url(null, $link);
                                     }
                                     ?>
                                     <li>
