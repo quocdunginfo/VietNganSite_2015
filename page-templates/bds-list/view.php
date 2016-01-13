@@ -78,21 +78,6 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 
     protected function getContentPart()
     {
-        $grid_title = '';
-        if($this->struct_lv_1!==false){
-            $grid_title = $this->struct_lv_1 == QdProductCat::$LV1_BAN ? 'NHÀ BÁN - CƠ HỘI ĐẦU TƯ' : 'NHÀ CHO THUÊ - CƠ HỘI ĐẦU TƯ';
-        }else{
-            if($this->location!==false){
-                $grid_title = 'KHU VỰC - '.mb_strtoupper($this->location->name);
-            }
-            if($this->price_from!==false || $this->price_to!==false){
-                $grid_title = 'THEO MỨC GIÁ';
-            }
-            if($this->key_word!==false){
-                $grid_title = 'THEO TỪ KHÓA';
-            }
-        }
-
         ?>
         <div class="row clearfix qd-row">
             <div style="background-color: #ffffff;" class="qd-opacity qd-opacity-paper"></div>
@@ -102,7 +87,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
             <div class="col-md-12 column" style="text-align: center">
                 <div class="col-md-12 column" style="text-align: left">
                     <div class="page-header" style="border-bottom: 0px;margin-bottom:5px;">
-                        <h3><?= $grid_title ?></h3>
+                        <h3 style="text-transform: uppercase"><?= $this->getCanonicalPageName() ?></h3>
                     </div>
                 </div>
 
@@ -223,6 +208,28 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
     protected function getBannerPart()
     {
         //HIDE
+    }
+    protected function getCanonicalPageName(){
+        $grid_title = '';
+        if($this->struct_lv_1!==false){
+            $grid_title = $this->struct_lv_1 == QdProductCat::$LV1_BAN ? 'Nhà bán - Cơ hội đầu tư' : 'Nhà cho thuê - Cơ hội đầu tư';
+        }else{
+            if($this->location!==false){
+                $grid_title = 'Tìm theo khu vực - ' . $this->location->name;
+            }
+            if($this->price_from!==false || $this->price_to!==false){
+                $grid_title = 'Tìm theo mức giá';
+            }
+            if($this->key_word!==false){
+                $grid_title = 'Tìm theo từ khóa';
+            }
+        }
+        return $grid_title;
+    }
+
+    protected function getPageTitle()
+    {
+        return str_replace('{prefix}', $this->getCanonicalPageName(), $this->page->theme_root_setup->seo_title_struct_2);
     }
 
 

@@ -32,4 +32,10 @@ class QdT_PageT_BDSDetail extends QdT_Layout_Root
     {
         return 'QdT_PageT_BDSDetail_View';
     }
+
+    public function getPageTitle()
+    {
+        return str_replace('{prefix}', $this->bds->name, $this->theme_root_setup->seo_title_struct_2);
+    }
+
 }

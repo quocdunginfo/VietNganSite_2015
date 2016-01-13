@@ -325,7 +325,7 @@ class QdT_Layout_Root_View
             <div class="col-md-12 column" style="text-align: center">
 
                 <div id="qd-button-hoptac" class="qd-button wow fadeInUp"
-                     data-wow-duration="<?= $show_animation_duration ?>"
+                     data-wow-duration="<?= $this->page->show_animation_duration ?>"
                      data-wow-delay="<?= $this->page->show_animation_delay ?>">
                     <?= ot_get_option('sec4_title', $this->page->default_string) ?>
                 </div>
@@ -545,7 +545,7 @@ class QdT_Layout_Root_View
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <?= ot_get_option('sec3_item2_full_content', $default_string) ?>
+                        <?= ot_get_option('sec3_item2_full_content', $this->page->default_string) ?>
                     </div>
                 </div>
 
@@ -562,7 +562,7 @@ class QdT_Layout_Root_View
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <?= ot_get_option('sec3_item3_full_content', $default_string) ?>
+                        <?= ot_get_option('sec3_item3_full_content', $this->page->default_string) ?>
                     </div>
                 </div>
 

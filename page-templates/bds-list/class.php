@@ -25,4 +25,10 @@ class QdT_PageT_BDSList extends QdT_Layout_Root
     {
         return 'QdT_PageT_BDSList_View';
     }
+
+    public function getPageTitle()
+    {
+        return str_replace('{prefix}', 'Tìm kiếm', $this->theme_root_setup->seo_title_struct_2);
+    }
+
 }

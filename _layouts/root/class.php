@@ -183,16 +183,19 @@ class QdT_Layout_Root
 
     public function getPageTitle()
     {
-        return ot_get_option('site_title', $this->page->default_string);
+        //return ot_get_option('site_title', $this->page->default_string);
+        return $this->theme_root_setup->seo_title_struct;
     }
 
     public function getPageDescription()
     {
-        return ot_get_option('seo_meta_desc', $this->page->default_string);
+        return $this->theme_root_setup->seo_description_struct;
+        //return ot_get_option('seo_meta_desc', $this->page->default_string);
     }
 
     public function getPageKeywords()
     {
-        return ot_get_option('seo_meta_keywords', $this->page->default_string);
+        return $this->theme_root_setup->seo_keywords_struct;
+        //return ot_get_option('seo_meta_keywords', $this->page->default_string);
     }
 }
