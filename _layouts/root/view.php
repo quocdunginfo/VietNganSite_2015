@@ -790,7 +790,7 @@ class QdT_Layout_Root_View
         <!-- WOW -->
         <script src="<?= $this->page->theme_uri ?>plugin/wow/wow.min.js"></script>
         <script>
-            $.fn.is_on_screen = function () {
+            var is_on_screen = function(elmId){
                 var win = $(window);
                 var viewport = {
                     top: win.scrollTop(),
@@ -799,9 +799,10 @@ class QdT_Layout_Root_View
                 viewport.right = viewport.left + win.width();
                 viewport.bottom = viewport.top + win.height();
 
-                var bounds = this.offset();
-                bounds.right = bounds.left + this.outerWidth();
-                bounds.bottom = bounds.top + this.outerHeight();
+                var elm = $('#' + elmId);
+                var bounds = elm.offset();
+                bounds.right = bounds.left + elm.outerWidth();
+                bounds.bottom = bounds.top + elm.outerHeight();
 
                 return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
             };
@@ -817,7 +818,8 @@ class QdT_Layout_Root_View
 
                 //on scrolling
                 $(window).scroll(function () {
-                    if (!$("#qd-logo-wrapper").is_on_screen() && !$("#qd-logo-wrapper").hasClass("animated")) {
+                    return;
+                    if (!is_on_screen("qd-logo-wrapper") && !$("#qd-logo-wrapper").hasClass("animated")) {
                         //console.log("#qd-logo-wrapper is not on screen");
                         //change to fixed pos
                         $("#qd-logo-wrapper").css({position: 'fixed'});
