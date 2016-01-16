@@ -18,6 +18,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
     private $key_word = false;
     private $location = false;
     private $loc_slug_id = false;
+
     public function __construct($page)
     {
         parent::__construct($page);
@@ -27,7 +28,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
         $this->struct_lv_1 = get_query_var('struct-id', false);
         $this->price_from = get_query_var('price-from', false);
         $this->price_to = get_query_var('price-to', false);
-        $this->key_word= get_query_var('key-word', false);
+        $this->key_word = get_query_var('key-word', false);
 
         if ($loc_id !== false && QdProductCat::GET($loc_id) == null) {
             $this->page->redirectPageError404();
@@ -37,10 +38,10 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
         if ($this->loc_slug_id !== false) {
             $pcat->SETRANGE('slug_id', $this->loc_slug_id);
             $tmp = $pcat->FINDFIRST();
-            if($tmp==null) {
+            if ($tmp == null) {
                 $this->page->redirectPageError404();
                 return;
-            }else{
+            } else {
                 $loc_id = $tmp->id;
                 $this->location = $tmp;
             }
@@ -60,7 +61,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
         if ($this->price_to !== false && $this->price_to > 0) {
             $tmp->SETRANGE('price', $this->price_to, QdProduct::$OP_LESS_THAN_OR_EQUAL);
         }
-        if($this->key_word !== false){
+        if ($this->key_word !== false) {
             $tmp->REMOVEFILTER();
             $tmp->SETRANGE('name', $this->key_word, QdProduct::$OP_CONTAINS);
             $tmp->SETRANGE('description', $this->key_word, QdProduct::$OP_CONTAINS);
@@ -97,10 +98,10 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                     <div class="col-md-9" style="padding:0px;margin:0px;">
 
                         <?php
-                        $index=0;
-                        foreach ($this->list_obj as $item): ?>
-                            <?php
-                            if($index%3==0){
+                        $length = count($this->list_obj);
+                        for ($index = 0; $index < $length; $index++):
+                            $item = $this->list_obj[$index];
+                            if ($index % 3 == 0) {
                                 echo '<div class="row">';
                             }
                             ?>
@@ -115,20 +116,16 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                                         <?= $item->name ?>
                                     </a>
 
-                                    <p><?=QdT_Library::num_as_group_vn($item->price, ' VND')?></p>
+                                    <p><?= QdT_Library::num_as_group_vn($item->price, ' VND') ?></p>
                                 </div>
                             </div>
 
                             <?php
-                            if(($index+1)%3==0 || !next( $this->list_obj )){
+                            if (($index + 1) % 3 == 0 || $index == $length - 1) {
                                 echo '</div>';
                             }
-                            ?>
-
-                        <?php
-                        $index++;
-                        endforeach; ?>
-                        </div>
+                        endfor;
+                        ?>
                     </div>
 
                     <div class="col-md-3 column ow fadeInUp animated"
@@ -161,28 +158,28 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                                     //}
                                     //$cp = add_query_arg(array('price-from' => $item[0], 'price-to' => $item[1]), $cp);
 
-                                    if($this->struct_lv_1!==false){
-                                        if($this->struct_lv_1==QdProductCat::$LV1_BAN){
-                                            $cp .='nha-ban';
-                                        }else if($this->struct_lv_1==QdProductCat::$LV1_CHOTHUE){
-                                            $cp .='nha-cho-thue';
+                                    if ($this->struct_lv_1 !== false) {
+                                        if ($this->struct_lv_1 == QdProductCat::$LV1_BAN) {
+                                            $cp .= 'nha-ban';
+                                        } else if ($this->struct_lv_1 == QdProductCat::$LV1_CHOTHUE) {
+                                            $cp .= 'nha-cho-thue';
                                         }
                                     }
 
                                     $caption = '';
-                                    if($item[1]==-1){
-                                        $caption = 'Trên '.QdT_Library::num_as_group_vn($item[0], ' VND');
-                                        $cp .= '/gia-tu/'.$item[0].'.html';
-                                    }else if($item[0]==0){
-                                        $caption = 'Dưới '.QdT_Library::num_as_group_vn($item[1], ' VND');
-                                        $cp .= '/gia-tu/'.$item[0].'/den/'.$item[1].'.html';
-                                    }else{
-                                        $caption = QdT_Library::num_as_group_vn($item[0]) . ' - '. QdT_Library::num_as_group_vn($item[1], ' VND');
-                                        $cp .= '/gia-tu/'.$item[0].'/den/'.$item[1].'.html';
+                                    if ($item[1] == -1) {
+                                        $caption = 'Trên ' . QdT_Library::num_as_group_vn($item[0], ' VND');
+                                        $cp .= '/gia-tu/' . $item[0] . '.html';
+                                    } else if ($item[0] == 0) {
+                                        $caption = 'Dưới ' . QdT_Library::num_as_group_vn($item[1], ' VND');
+                                        $cp .= '/gia-tu/' . $item[0] . '/den/' . $item[1] . '.html';
+                                    } else {
+                                        $caption = QdT_Library::num_as_group_vn($item[0]) . ' - ' . QdT_Library::num_as_group_vn($item[1], ' VND');
+                                        $cp .= '/gia-tu/' . $item[0] . '/den/' . $item[1] . '.html';
                                     }
                                     $cp = get_site_url(null, $cp);
                                     ?>
-                                    <li><a href="<?=$cp?>"><?=$caption?></a></li>
+                                    <li><a href="<?= $cp ?>"><?= $caption ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -196,8 +193,8 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                                     $link = '';
                                     if ($this->struct_lv_1 != false) {
                                         $link = $item->getPermalink(array('struct-id' => $this->struct_lv_1));
-                                    }else{
-                                        $link = 'khu-vuc/'.$item->slug_id.'.html';
+                                    } else {
+                                        $link = 'khu-vuc/' . $item->slug_id . '.html';
                                         $link = get_site_url(null, $link);
                                     }
                                     ?>
@@ -230,18 +227,20 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
     {
         //HIDE
     }
-    protected function getCanonicalPageName(){
+
+    protected function getCanonicalPageName()
+    {
         $grid_title = '';
-        if($this->struct_lv_1!==false){
+        if ($this->struct_lv_1 !== false) {
             $grid_title = $this->struct_lv_1 == QdProductCat::$LV1_BAN ? 'Nhà bán - Cơ hội đầu tư' : 'Nhà cho thuê - Cơ hội đầu tư';
-        }else{
-            if($this->location!==false){
+        } else {
+            if ($this->location !== false) {
                 $grid_title = 'Tìm theo khu vực - ' . $this->location->name;
             }
-            if($this->price_from!==false || $this->price_to!==false){
+            if ($this->price_from !== false || $this->price_to !== false) {
                 $grid_title = 'Tìm theo mức giá';
             }
-            if($this->key_word!==false){
+            if ($this->key_word !== false) {
                 $grid_title = 'Tìm theo từ khóa';
             }
         }
