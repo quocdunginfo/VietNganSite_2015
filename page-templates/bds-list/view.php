@@ -93,9 +93,19 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
 
                 <div style="clear: both;"></div>
                 <div class="col-md-12">
+
                     <div class="col-md-9" style="padding:0px;margin:0px;">
-                        <?php foreach ($this->list_obj as $item): ?>
-                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated"
+
+                        <?php
+                        $index=0;
+                        foreach ($this->list_obj as $item): ?>
+                            <?php
+                            if($index%3==0){
+                                echo '<div class="row">';
+                            }
+                            ?>
+
+                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12  wow fadeInUp animated qd-item-box"
                                  style="margin-top:15px;margin:0px;padding-left:0px;">
                                 <div class="thumbnail" style="margin-bottom:5px;">
                                     <img src="<?= $item->getMediaURL('avatar', 'medium') ?>" alt="">
@@ -108,7 +118,17 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                                     <p><?=QdT_Library::num_as_group_vn($item->price, ' VND')?></p>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
+
+                            <?php
+                            if(($index+1)%3==0 || !next( $this->list_obj )){
+                                echo '</div>';
+                            }
+                            ?>
+
+                        <?php
+                        $index++;
+                        endforeach; ?>
+                        </div>
                     </div>
 
                     <div class="col-md-3 column ow fadeInUp animated"
@@ -190,6 +210,7 @@ class QdT_PageT_BDSList_View extends QdT_Layout_Root_View
                             </ul>
                         </div>
                     </div>
+
                 </div>
 
             </div>
